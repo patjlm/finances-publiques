@@ -324,10 +324,12 @@
     "label": "Pensions autres régimes",
     "year": "2024",
     "value_md": 42.9,
-    "description": "Pensions versées par les régimes non modélisés explicitement dans ce diagramme : agriculture/MSA (~14 Md€), professions libérales (CNAVPL et sections : médecins, avocats, experts-comptables, paramédics, etc.) (~19 Md€), autres petits régimes (CAVIMAC, CRPCEN, CAMNAVIC, etc.) (~9,9 Md€). Ce nœud permet d'atteindre le total officiel COR de 406,9 Md€ (13,9 % du PIB, rapport annuel juin 2025) : 364,1 Md€ modélisés (257,1 privé + 107 public) + 42,9 Md€ = 407 Md€.",
-    "decomposition": "MSA ~14 + professions libérales ~19 + autres ~9,9 ≈ 42,9 Md€ (COR total 406,9 Md€ - 364,1 Md€ modélisés = 42,9 Md€)",
+    "description": "Pensions versées par les régimes non modélisés explicitement dans ce diagramme. MSA vieillesse (salariés + non-salariés) : ~14,2 Md€ (MSA Chiffres utiles 2025). CNAVPL base + complémentaires (médecins CARMF, avocats CNBF, experts-comptables CAVEC, paramédics CARPIMKO, sages-femmes/dentistes CARCDSF, professions diverses CIPAV) : ~8,8 Md€ (fiche COR CNAVPL juil. 2024, estimé 2024 +4,9 %). Autres petits régimes (CANSSM mineurs, CRPCEN clercs notaires, FSPOEIE ouvriers État, CAVIMAC ministres du culte, résiduel) : ~19,9 Md€. Ce nœud permet d'atteindre le total officiel COR de 406,9 Md€ (13,9 % du PIB, rapport annuel juin 2025) : 364,1 Md€ modélisés (257,1 privé + 107 public) + 42,9 Md€ = 407 Md€.",
+    "decomposition": "MSA ~14,2 + CNAVPL ~8,8 + petits régimes et résiduel ~19,9 ≈ 42,9 Md€ (COR total 406,9 Md€ - 364,1 Md€ modélisés = 42,9 Md€)",
     "sources": [
       {"label": "COR, Rapport annuel juin 2025 (total 406,9 Md€)", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france"},
+      {"label": "MSA, Chiffres utiles 2025 (~14,2 Md€ vieillesse)", "url": "https://statistiques.msa.fr/publication/chiffres-utiles-edition-nationale-2025/"},
+      {"label": "COR, fiche CNAVPL juillet 2024 (~8,4 Md€ base+comp 2023)", "url": "https://www.cor-retraites.fr/sites/default/files/2024-07/Fiche_CNAVPL_RB+RC.pdf"},
       {"label": "DREES — Les retraités et les retraites, édition 2025", "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse-documents-de-reference/250731_PANORAMAS-retraites"}
     ]
   },
