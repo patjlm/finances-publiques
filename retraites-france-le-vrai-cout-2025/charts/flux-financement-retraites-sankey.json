@@ -3,7 +3,7 @@
     {
       "node_id": 0,
       "amount_key": null,
-      "label_override": "Cotisations privé 255 Md€ (CNAV 155 + AGIRC-ARRCO 100)",
+      "label_override": "Cotisations privé 253.1 Md€ (CNAV 155 + AGIRC-ARRCO 98.1)",
       "color": "#2ca02c",
       "x": 0.01,
       "y": 0.904
@@ -170,12 +170,6 @@
       "target_node_id": 7,
       "amount_key": "surcotisation-etat-cas",
       "color": "rgba(214,39,40,0.35)"
-    },
-    {
-      "source_node_id": 5,
-      "target_node_id": 10,
-      "amount_key": "deficit-cor",
-      "color": "rgba(139,0,0,0.5)"
     },
     {
       "source_node_id": 5,

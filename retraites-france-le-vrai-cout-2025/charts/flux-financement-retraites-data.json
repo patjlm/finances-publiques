@@ -9,11 +9,12 @@
     ]
   },
   "cotisations-agirc-arrco": {
-    "label": "Cotisations AGIRC-ARRCO",
+    "label": "Pensions AGIRC-ARRCO versées",
     "year": "2024",
-    "value_md": 100,
-    "description": "Cotisations du régime complémentaire obligatoire du secteur privé (AGIRC-ARRCO). 20 millions de cotisants, 12,6 millions de retraités. Solde légèrement excédentaire, réserves ~80 Md€. Ces cotisations sont versées directement aux pensions AGIRC-ARRCO sans transiter par la branche CNAV.",
+    "value_md": 98.1,
+    "description": "Pensions versées par le régime complémentaire obligatoire du secteur privé (AGIRC-ARRCO) en 2024. 14 millions de retraités. Cotisations encaissées 2024 : 101,4 Md€. Excédent technique : +1,6 Md€ (surplus allant aux réserves ~85,6 Md€). Ce flux représente directement les pensions AGIRC-ARRCO versées, sans transiter par la branche CNAV. La revalorisation de +1,6 % en novembre 2024 a coûté ~4 Md€ supplémentaires vs 2023 (92,4 Md€).",
     "sources": [
+      { "label": "AGIRC-ARRCO, communiqué de presse résultats 2024 (27 mars 2025)", "url": "https://www.agirc-arrco.fr/storage/2025/03/20250327_CP_Resultats-Agirc-Arrco-2024.pdf" },
       { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" }
     ]
   },
@@ -232,9 +233,9 @@
   "pensions-privé": {
     "label": "Pensions privé",
     "year": "2024",
-    "value_md": 259,
-    "description": "Total des pensions versées aux retraités du secteur privé. CNAV (régime de base) : 159 Md€ + AGIRC-ARRCO (complémentaire obligatoire) : 100 Md€ = 259 Md€. Ratio cotisants/retraités AGIRC-ARRCO : 2,2. Ratio CNAV : 1,39.",
-    "decomposition": "CNAV 159 + AGIRC-ARRCO 100 = 259 Md€",
+    "value_md": 257.1,
+    "description": "Total des pensions versées aux retraités du secteur privé. CNAV (régime de base) : 159 Md€ + AGIRC-ARRCO (complémentaire obligatoire) : 98,1 Md€ = 257,1 Md€. Ratio cotisants/retraités AGIRC-ARRCO : 2,2. Ratio CNAV : 1,39.",
+    "decomposition": "CNAV 159 + AGIRC-ARRCO 98,1 = 257,1 Md€",
     "sources": [
       { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" }
     ]
@@ -255,8 +256,8 @@
     "label": "TOTAL PENSIONS (COR officiel)",
     "year": "2024",
     "value_md": 407,
-    "description": "Total des pensions versées tous régimes confondus. Pensions privé (259) + pensions publiques (107) + autres régimes MSA/professions libérales/divers (41) = 407 Md€. Ce chiffre correspond au total officiel COR du rapport annuel juin 2025 : 406,9 Md€ = 13,9 % du PIB.",
-    "decomposition": "Pensions privé 259 + pensions publiques 107 + autres régimes (MSA, PL...) 41 = 407 Md€ (COR officiel : 406,9 Md€)",
+    "description": "Total des pensions versées tous régimes confondus. Pensions privé (257,1) + pensions publiques (107) + autres régimes MSA/professions libérales/divers (42,9) = 407 Md€. Ce chiffre correspond au total officiel COR du rapport annuel juin 2025 : 406,9 Md€ = 13,9 % du PIB.",
+    "decomposition": "Pensions privé 257,1 + pensions publiques 107 + autres régimes (MSA, PL...) 42,9 = 407 Md€ (COR officiel : 406,9 Md€)",
     "sources": [
       { "label": "COR synthèse juin 2025 (PDF)", "url": "https://www.cor-retraites.fr/sites/default/files/2025-06/Synth%C3%A8se_Def_.pdf" },
       { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" }
@@ -311,8 +312,8 @@
   "subvention-etat-msa-autres": {
     "label": "Subvention État — MSA et autres régimes",
     "year": "2024",
-    "value_md": 10,
-    "description": "Transferts du budget de l'État vers les régimes agricoles (MSA) et autres petits régimes non couverts par la mission « Régimes sociaux et de retraite ». La MSA agriculture est fortement déficitaire démographiquement (exode rural, mécanisation) : ses charges (~14 Md€) dépassent largement ses cotisations propres (~7 Md€). L'État compense ce déséquilibre via une subvention d'équilibre. Les professions libérales (CNAVPL) ne reçoivent pas de subvention d'État. Estimation : déficit MSA ~6-7 Md€ + subventions autres petits régimes ~3 Md€ ≈ 10 Md€.",
+    "value_md": 11.9,
+    "description": "Transferts du budget de l'État vers les régimes agricoles (MSA) et autres petits régimes non couverts par la mission « Régimes sociaux et de retraite ». La MSA agriculture est fortement déficitaire démographiquement (exode rural, mécanisation) : ses charges (~14 Md€) dépassent largement ses cotisations propres (~7 Md€). L'État compense ce déséquilibre via une subvention d'équilibre. Les professions libérales (CNAVPL) ne reçoivent pas de subvention d'État. Estimation : déficit MSA ~7-8 Md€ + subventions autres petits régimes ~4 Md€ ≈ 11,9 Md€. Ce montant incorpore également la fraction du déficit officiel COR (-1,7 Md€) qui s'impute sur ces régimes déficitaires.",
     "estimate": true,
     "sources": [
       {"label": "COR, Rapport annuel juin 2025 (besoin financement agriculture -6 Md€)", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france"},
@@ -322,9 +323,9 @@
   "pensions-autres-regimes": {
     "label": "Pensions autres régimes",
     "year": "2024",
-    "value_md": 41,
-    "description": "Pensions versées par les régimes non modélisés explicitement dans ce diagramme : agriculture/MSA (~14 Md€), professions libérales (CNAVPL et sections : médecins, avocats, experts-comptables, paramédics, etc.) (~19 Md€), autres petits régimes (CAVIMAC, CRPCEN, CAMNAVIC, etc.) (~8 Md€). Ce nœud permet d'atteindre le total officiel COR de 406,9 Md€ (13,9 % du PIB, rapport annuel juin 2025) : 366 Md€ modélisés + 41 Md€ = 407 Md€.",
-    "decomposition": "MSA ~14 + professions libérales ~19 + autres ~8 ≈ 41 Md€ (COR total tous régimes 406,9 Md€ - 366 Md€ modélisés = 40,9 Md€ ≈ 41 Md€)",
+    "value_md": 42.9,
+    "description": "Pensions versées par les régimes non modélisés explicitement dans ce diagramme : agriculture/MSA (~14 Md€), professions libérales (CNAVPL et sections : médecins, avocats, experts-comptables, paramédics, etc.) (~19 Md€), autres petits régimes (CAVIMAC, CRPCEN, CAMNAVIC, etc.) (~9,9 Md€). Ce nœud permet d'atteindre le total officiel COR de 406,9 Md€ (13,9 % du PIB, rapport annuel juin 2025) : 364,1 Md€ modélisés (257,1 privé + 107 public) + 42,9 Md€ = 407 Md€.",
+    "decomposition": "MSA ~14 + professions libérales ~19 + autres ~9,9 ≈ 42,9 Md€ (COR total 406,9 Md€ - 364,1 Md€ modélisés = 42,9 Md€)",
     "sources": [
       {"label": "COR, Rapport annuel juin 2025 (total 406,9 Md€)", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france"},
       {"label": "DREES — Les retraités et les retraites, édition 2025", "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse-documents-de-reference/250731_PANORAMAS-retraites"}
