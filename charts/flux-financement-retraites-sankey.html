@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<!-- Servir via HTTP pour fetch() : cd charts && python -m http.server 8000 -->
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flux de financement des retraites françaises</title>
+  <script src="https://cdn.plot.ly/plotly-3.6.0.min.js" charset="utf-8"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0 16px 48px;
+      font-family: "Liberation Sans", Arial, sans-serif;
+      font-size: 13px;
+      color: #333;
+      background: #fff;
+    }
+    h1 {
+      text-align: center;
+      color: #2a3f5f;
+      margin: 24px 0 4px;
+      font-size: 22px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 13px;
+      margin: 0 0 16px;
+    }
+    #sankey-div {
+      width: 100%;
+      height: 1000px;
+    }
+    #load-error {
+      display: none;
+      color: #c00;
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 4px;
+      padding: 16px 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      font-size: 14px;
+    }
+    #data-table {
+      max-width: 1600px;
+      margin: 32px auto 0;
+    }
+    #data-table h2 {
+      color: #2a3f5f;
+      border-bottom: 2px solid #2a3f5f;
+      padding-bottom: 6px;
+      font-size: 18px;
+    }
+    #data-table h3 {
+      color: #444;
+      margin-top: 28px;
+      font-size: 15px;
+    }
+    .note {
+      color: #555;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 32px;
+    }
+    thead tr {
+      background: #e8f0f8;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 7px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { padding: 8px 10px; }
+    th.num, td.num {
+      text-align: right;
+      white-space: nowrap;
+    }
+    tbody tr:nth-child(odd) { background: #f9f9f9; }
+    .badge-estimate {
+      display: inline-block;
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffc107;
+      border-radius: 3px;
+      font-size: 10px;
+      padding: 1px 4px;
+      margin-left: 4px;
+      white-space: nowrap;
+    }
+    .sources-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .sources-list li + li { margin-top: 3px; }
+    .sources-list a { color: #1a6fa8; text-decoration: none; }
+    .sources-list a:hover { text-decoration: underline; }
+    .warning {
+      color: #888;
+      font-size: 11px;
+      margin-bottom: 40px;
+    }
+    #export-btn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 9999;
+      padding: 10px 20px;
+      background: #ff7f0e;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    #export-btn:hover { background: #e6550d; }
+    #coords-output {
+      position: fixed;
+      top: 50px;
+      right: 10px;
+      z-index: 9999;
+      max-width: 500px;
+      max-height: 400px;
+      overflow: auto;
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 12px;
+      display: none;
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Flux de financement des retraites : qui paie réellement ?</h1>
+<p class="subtitle">
+  Pensions et cotisations : données <strong>2024</strong> (COR rapport annuel juin 2025, Cour des comptes NEB 2024) ·
+  Budget État, déficit, dette : exécution <strong>2025</strong> (DGFiP déc. 2025, INSEE mars 2026)
+</p>
+<p class="subtitle" style="font-size:11px; color:#e07000; margin-top:-8px;">
+  ⚠ Le rapport COR publié en juin N+1 couvre les données N — le mix 2024/2025 est structurel et inévitable à cette date.
+  Les chiffres d'une même série (pensions ou budget) sont cohérents entre eux.
+</p>
+
+<div id="sankey-div"></div>
+<div id="load-error">
+  <b>Erreur de chargement des données.</b><br>
+  Ce fichier doit être servi via HTTP (CORS bloque <code>fetch()</code> en <code>file://</code>).<br>
+  Lancer : <code>cd charts &amp;&amp; python -m http.server 8000</code>
+  puis ouvrir <a href="http://localhost:8000/flux-financement-retraites-sankey.html">http://localhost:8000/flux-financement-retraites-sankey.html</a>
+</div>
+
+<section id="data-table">
+  <h2>Données et sources</h2>
+  <p class="note">
+    Toutes les valeurs en milliards d'euros (Md€).
+    <strong>Deux millésimes coexistent par nécessité</strong> : les données sur les pensions et cotisations (COR, CAS, CNRACL,
+    AGIRC-ARRCO, régimes spéciaux) sont issues du rapport annuel COR juin 2025 et de la NEB Cour des comptes 2024,
+    soit des <strong>données 2024</strong>. Les données budgétaires et fiscales (Budget État, recettes, déficit, dette)
+    proviennent de l'exécution DGFiP décembre 2025 et INSEE mars 2026, soit des <strong>données 2025</strong>.
+    Ce décalage est structurel : le COR publie toujours les données pensions en juin N+1.
+    Les chiffres au sein de chaque série sont cohérents entre eux.
+    <span class="badge-estimate">estimé</span> = valeur dérivée ou estimation (non directement publiée).
+  </p>
+
+  <h3>Nœuds</h3>
+  <table id="nodes-table">
+    <thead>
+      <tr>
+        <th>Nœud</th>
+        <th class="num">Md€</th>
+        <th style="text-align:center;">Année</th>
+        <th>Décomposition / note</th>
+        <th>Sources officielles</th>
+      </tr>
+    </thead>
+    <tbody id="nodes-tbody"></tbody>
+  </table>
+
+  <h3>Flux</h3>
+  <table id="links-table">
+    <thead>
+      <tr>
+        <th>Flux</th>
+        <th class="num">Md€</th>
+        <th style="text-align:center;">Année</th>
+        <th>Note</th>
+        <th>Sources</th>
+      </tr>
+    </thead>
+    <tbody id="links-tbody"></tbody>
+  </table>
+
+  <p class="warning">
+    <b>Avertissement</b> : ce diagramme est une simplification pédagogique.
+    Les flux financiers réels du système de retraites passent par des canaux comptables
+    complexes (ROBSS, FSV, CAS, compensation démographique…) et les périmètres varient
+    selon les sources. Les valeurs sont arrondies à 0,1 Md€ près.
+    Les sources officielles font foi.
+  </p>
+</section>
+
+<section id="beaufret" style="max-width:1600px; margin:40px auto 0; padding:0 0 48px;">
+  <h2 style="color:#2a3f5f; border-bottom:2px solid #2a3f5f; padding-bottom:6px; font-size:18px;">
+    Deux lectures du même système : COR vs Beaufret
+  </h2>
+  <p class="note" style="margin-bottom:16px;">
+    Le diagramme ci-dessus présente les flux réels tels qu'ils circulent. Mais il y a un débat fondamental sur ce que ces flux signifient.
+    Deux interprétations produisent des résultats radicalement différents sur l'équilibre du système.
+  </p>
+
+  <h3 style="color:#444; font-size:15px; margin-top:24px;">La convention COR : quasi-équilibre à -1,7 Md€</h3>
+  <p>
+    Le <a href="https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" target="_blank">Conseil d'Orientation des Retraites (rapport annuel juin 2025)</a>
+    affiche un déficit de <strong>-1,7 Md€</strong> en 2024 (-0,1 % du PIB). Dans cette convention (dite EPR),
+    toutes les ressources légalement affectées au système comptent comme des recettes : cotisations salariales et patronales,
+    CSG, transferts inter-branches (CNAF, UNEDIC, CNAM), contributions d'équilibre de l'État au CAS Pensions.
+    Si ces ressources couvrent les charges, le système est « à l'équilibre ».
+  </p>
+
+  <h3 style="color:#444; font-size:15px; margin-top:24px;">La convention Beaufret : besoin de financement -81 Md€</h3>
+  <p>
+    <a href="https://www.fondapol.org/decryptage/synthese-contribution-a-la-mission-flash-de-clarification-du-financement-des-retraites/" target="_blank">Jean-Pascal Beaufret</a>
+    (ex-inspecteur général des Finances, note Fondapol, février 2025) pose une question différente :
+    combien le système encaisse-t-il en <em>prélèvements obligatoires strictement contributifs</em>
+    (cotisations + impôts affectés = 331 Md€) pour 412 Md€ de charges totales ?
+    L'écart = <strong>-81 Md€</strong>, couvert par 82,6 Md€ de « subventions implicites ».
+  </p>
+
+  <table style="border-collapse:collapse; width:100%; margin:12px 0 24px; font-size:12px;">
+    <thead><tr style="background:#e8f0f8;">
+      <th style="border:1px solid #ccc; padding:6px 10px; text-align:left;">Poste</th>
+      <th style="border:1px solid #ccc; padding:6px 10px; text-align:right;">2023</th>
+      <th style="border:1px solid #ccc; padding:6px 10px; text-align:right;">2024 (p)</th>
+      <th style="border:1px solid #ccc; padding:6px 10px; text-align:left;">Note</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid #ccc; padding:6px 10px;">Total charges système de retraites</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;">389 Md€</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;"><strong>412 Md€</strong></td><td style="border:1px solid #ccc; padding:6px 10px; color:#555;">Tous régimes (incl. MSA, professions libérales, absents de ce diagramme)</td></tr>
+      <tr style="background:#f9f9f9;"><td style="border:1px solid #ccc; padding:6px 10px;">Prélèvements obligatoires affectés (cotisations + impôts)</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;">320 Md€</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;"><strong>331 Md€</strong></td><td style="border:1px solid #ccc; padding:6px 10px; color:#555;">Ce que Beaufret considère comme ressources « légitimes »</td></tr>
+      <tr style="color:#c00; font-weight:bold;"><td style="border:1px solid #ccc; padding:6px 10px;">Besoin de financement (déficit implicite)</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;">-69 Md€</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;">-81 Md€</td><td style="border:1px solid #ccc; padding:6px 10px; color:#555;">Couvert par des subventions implicites</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:#444; font-size:15px; margin-top:24px;">Composition des 82,6 Md€ de subventions implicites (2024)</h3>
+  <table style="border-collapse:collapse; width:100%; margin:12px 0 24px; font-size:12px;">
+    <thead><tr style="background:#e8f0f8;">
+      <th style="border:1px solid #ccc; padding:6px 10px; text-align:left;">Poste</th>
+      <th style="border:1px solid #ccc; padding:6px 10px; text-align:right;">Md€</th>
+      <th style="border:1px solid #ccc; padding:6px 10px; text-align:left;">Source / nature</th>
+      <th style="border:1px solid #ccc; padding:6px 10px; text-align:left;">Dans ce diagramme ?</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid #ccc; padding:6px 10px;">Surcotisations PCMR — État employeur</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;">39,2</td><td style="border:1px solid #ccc; padding:6px 10px; color:#555;">Budget de l'État (taux réel 78,28 % vs 16,58 % privé)</td><td style="border:1px solid #ccc; padding:6px 10px;">✓ Flux rouge Budget → CAS 45 Md€ (avec cotis. salariales)</td></tr>
+      <tr style="background:#f9f9f9;"><td style="border:1px solid #ccc; padding:6px 10px;">Surcotisations PCMR — opérateurs État</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;">4,7</td><td style="border:1px solid #ccc; padding:6px 10px; color:#555;">Universités, agences, EPA — hors budget général mais financés par l'État</td><td style="border:1px solid #ccc; padding:6px 10px; color:#888;">Absent</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:6px 10px;">Surcotisations CNRACL — collectivités + hôpitaux</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;">8,8</td><td style="border:1px solid #ccc; padding:6px 10px; color:#555;">Budgets locaux + ONDAM (taux patronal CNRACL ~30,65 % vs 16,58 %)</td><td style="border:1px solid #ccc; padding:6px 10px;">✓ Incluse dans flux CNRACL FPT 14,4 Md€ (nœud Collectivités) + FPH 9,6 Md€ (nœud Hôpitaux publics)</td></tr>
+      <tr style="background:#f9f9f9;"><td style="border:1px solid #ccc; padding:6px 10px;">Transferts inter-branches (CNAF, UNEDIC, CNAM…)</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;">16,8</td><td style="border:1px solid #ccc; padding:6px 10px; color:#555;">Autres branches sécu (cotisations propres, pas budget État)</td><td style="border:1px solid #ccc; padding:6px 10px;">✓ Nœud teal « Transferts inter-branches »</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:6px 10px;">Subventions équilibre régimes spéciaux</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;">8,4</td><td style="border:1px solid #ccc; padding:6px 10px; color:#555;">Budget de l'État (SNCF, RATP, marins, mineurs…)</td><td style="border:1px solid #ccc; padding:6px 10px;">✓ Flux orange Budget → Pensions publiques 6 Md€ (approx.)</td></tr>
+      <tr style="background:#f9f9f9;"><td style="border:1px solid #ccc; padding:6px 10px;">Compensation allègements de cotisations</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;">4,7</td><td style="border:1px solid #ccc; padding:6px 10px; color:#555;">TVA affectée (recettes fiscales État → sécu) ; compense ~77 Md€ d'exonérations patronales bas salaires</td><td style="border:1px solid #ccc; padding:6px 10px;">✓ Flux séparé Budget → Sécu vieillesse 4,7 Md€</td></tr>
+      <tr style="font-weight:bold; background:#fff3cd;"><td style="border:1px solid #ccc; padding:6px 10px;">Total subventions implicites</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right;">82,6</td><td style="border:1px solid #ccc; padding:6px 10px;"></td><td style="border:1px solid #ccc; padding:6px 10px;"></td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:#444; font-size:15px; margin-top:24px;">Décomposition par régime (besoin de financement 2024)</h3>
+  <table style="border-collapse:collapse; width:60%; margin:12px 0 24px; font-size:12px;">
+    <thead><tr style="background:#e8f0f8;">
+      <th style="border:1px solid #ccc; padding:6px 10px; text-align:left;">Régime</th>
+      <th style="border:1px solid #ccc; padding:6px 10px; text-align:right;">Besoin financement</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid #ccc; padding:6px 10px;">PCMR (fonctionnaires État)</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right; color:#c00;"><strong>-44 Md€</strong></td></tr>
+      <tr style="background:#f9f9f9;"><td style="border:1px solid #ccc; padding:6px 10px;">CNRACL (fonct. territoriaux/hospitaliers)</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right; color:#c00;"><strong>-12 Md€</strong></td></tr>
+      <tr><td style="border:1px solid #ccc; padding:6px 10px;">Régimes spéciaux (SNCF, RATP, marins…)</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right; color:#c00;">-9 Md€</td></tr>
+      <tr style="background:#f9f9f9;"><td style="border:1px solid #ccc; padding:6px 10px;">CNAV (base salariés privés)</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right; color:#c00;">-10 Md€</td></tr>
+      <tr><td style="border:1px solid #ccc; padding:6px 10px;">Agriculture (MSA)</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right; color:#c00;">-6 Md€</td></tr>
+      <tr style="background:#f9f9f9;"><td style="border:1px solid #ccc; padding:6px 10px;">AGIRC-ARRCO (complémentaire privé)</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right; color:#2a7;">0 Md€</td></tr>
+      <tr style="background:#f9f9f9;"><td style="border:1px solid #ccc; padding:6px 10px;">Autres</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right; color:#2a7;">+1 Md€</td></tr>
+      <tr style="font-weight:bold; background:#fff3cd;"><td style="border:1px solid #ccc; padding:6px 10px;">Total</td><td style="border:1px solid #ccc; padding:6px 10px; text-align:right; color:#c00;">-81 Md€</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Fonctionnaires (PCMR + CNRACL) = <strong>69 % du besoin de financement total</strong> (-56 Md€ sur -81 Md€).</p>
+
+  <h3 style="color:#444; font-size:15px; margin-top:24px;">Écart résiduel avec Beaufret</h3>
+  <p class="note">
+    Ce Sankey couvre désormais <strong>407 Md€</strong> de pensions (privé 259 + publiques 107 + autres régimes MSA/PL/autres 41),
+    soit le total officiel COR 2024 (406,9 Md€). L'écart avec les <strong>412 Md€</strong> de Beaufret (~5 Md€) s'explique par
+    des données 2024 provisoires légèrement différentes (note Beaufret datée de février 2025) et de minimes différences de périmètre.
+    Le principal désaccord restant est <strong>méthodologique</strong> : Beaufret exclut les surcotisations de ses « prélèvements
+    obligatoires » de 331 Md€, là où le COR les y intègre. Ce choix seul explique l'essentiel de l'écart -1,7 Md€ vs -81 Md€.
+    Le poste absent de notre diagramme : surcotisations PCMR opérateurs État (universités, agences) = 4,7 Md€.
+  </p>
+
+  <h3 style="color:#444; font-size:15px; margin-top:24px;">La critique (Zemmour, IPP, COR)</h3>
+  <p class="note">
+    Michaël Zemmour (Sciences Po, <a href="https://basta.media/selon-bayrou-la-dette-publique-serait-due-au-financement-des-retraites-c-est-faux" target="_blank">Basta!, janvier 2025</a>) :
+    « Cela revient à considérer que chaque centime versé par l'État dans ce cadre est issu de l'emprunt, ça n'a aucun sens. »
+    L'<a href="https://blog.ipp.eu/2025/01/23/quels-enjeux-derriere-le-debat-sur-les-vrais-chiffres-de-deficit-des-retraites/" target="_blank">IPP (blog, janvier 2025)</a>
+    souligne que les deux lectures sont défendables comptablement — elles reflètent des <em>choix politiques</em>
+    sur qui doit financer les retraites, pas des erreurs de calcul.
+    Beaufret lui-même ne parle pas de « chiffres cachés » mais d'une présentation qui empêche le débat démocratique.
+  </p>
+
+  <p class="note" style="margin-top:12px;">
+    <strong>Sources :</strong>
+    <a href="https://www.fondapol.org/app/uploads/2025/02/259_beaufret_fr_2025-02-10_w.pdf" target="_blank">Note Beaufret, Fondapol, février 2025 (PDF)</a> ·
+    <a href="https://www.fondapol.org/decryptage/synthese-contribution-a-la-mission-flash-de-clarification-du-financement-des-retraites/" target="_blank">Synthèse Fondapol</a> ·
+    <a href="https://blog.ipp.eu/2025/01/23/quels-enjeux-derriere-le-debat-sur-les-vrais-chiffres-de-deficit-des-retraites/" target="_blank">Blog IPP, janvier 2025</a>
+  </p>
+</section>
+
+<button id="export-btn" onclick="exportPositions()">📐 Exporter positions</button>
+<pre id="coords-output"></pre>
+
+<script>
+// ============================================================
+// Helpers
+// ============================================================
+function yearBadge(year) {
+  var colors = {'2024': '#546e7a', '2025': '#00796b', '2024/2025': '#6a1b9a'};
+  var bg = colors[year] || '#888';
+  return '<span style="display:inline-block;background:' + bg + ';color:white;border-radius:3px;font-size:10px;padding:1px 6px;white-space:nowrap;">' + (year || '—') + '</span>';
+}
+
+function nodeLabel(node, data) {
+  if (node.label_override) return node.label_override;
+  var a = data[node.amount_key];
+  if (!a) return node.amount_key;
+  return a.label + ' ' + a.value_md + ' Md€';
+}
+
+function sourcesHtml(sources) {
+  if (!sources || sources.length === 0) return '—';
+  var items = sources.map(function(s) {
+    return '<li><a href="' + s.url + '" target="_blank" rel="noopener">' + s.label + '</a></li>';
+  });
+  return '<ul class="sources-list">' + items.join('') + '</ul>';
+}
+
+function fmtValue(v) {
+  return String(v).replace('.', ',');
+}
+
+// ============================================================
+// Build Plotly Sankey
+// ============================================================
+function buildSankey(data, cfg) {
+  var lay = cfg.layout;
+
+  var plotlyData = [{
+    type: 'sankey',
+    arrangement: 'snap',
+    node: {
+      label:     cfg.nodes.map(function(n) { return nodeLabel(n, data); }),
+      color:     cfg.nodes.map(function(n) { return n.color; }),
+      x:         cfg.nodes.map(function(n) { return n.x; }),
+      y:         cfg.nodes.map(function(n) { return n.y; }),
+      pad: 25,
+      thickness: 20,
+      line: { color: 'white', width: 1 },
+      hovertemplate: '%{label}<extra></extra>'
+    },
+    link: {
+      source: cfg.links.map(function(l) { return l.source_node_id; }),
+      target: cfg.links.map(function(l) { return l.target_node_id; }),
+      value:  cfg.links.map(function(l) {
+        var e = data[l.amount_key];
+        return e ? e.value_md : 0;
+      }),
+      color:  cfg.links.map(function(l) { return l.color; }),
+      label:  cfg.links.map(function(l) {
+        var e = data[l.amount_key];
+        return e ? e.label + ' : ' + e.value_md + ' Md€' : l.amount_key;
+      }),
+      hovertemplate: '%{label}<extra></extra>'
+    }
+  }];
+
+  var annotations = (lay.annotations || []).map(function(ann) {
+    return {
+      text: ann.text, xref: ann.xref, yref: ann.yref,
+      x: ann.x, y: ann.y, showarrow: ann.showarrow,
+      font: ann.font, xanchor: ann.xanchor
+    };
+  });
+
+  var layout = {
+    font: { size: 10, family: 'Liberation Sans, Arial, sans-serif' },
+    height: lay.height,
+    margin: Object.assign({}, lay.margin, { t: 20 }),
+    paper_bgcolor: 'white', plot_bgcolor: 'white',
+    annotations: annotations
+  };
+
+  Plotly.newPlot('sankey-div', plotlyData, layout, { responsive: true });
+}
+
+// ============================================================
+// Build data tables
+// ============================================================
+function buildNodesTable(data, cfg) {
+  var tbody = document.getElementById('nodes-tbody');
+  if (!tbody) return;
+
+  var seen = {}, nodeKeys = [];
+  cfg.nodes.forEach(function(node) {
+    var key = node.amount_key;
+    if (key && !seen[key]) { seen[key] = true; nodeKeys.push(key); }
+  });
+
+  var html = '';
+  nodeKeys.forEach(function(key) {
+    var d = data[key];
+    if (!d) return;
+    var badge = d.estimate ? ' <span class="badge-estimate">estimé</span>' : '';
+    var decomp = d.decomposition
+      ? '<br><em style="color:#666;font-size:11px;">' + d.decomposition + '</em>' : '';
+    html += '<tr>'
+      + '<td><b>' + d.label + '</b>' + badge + '</td>'
+      + '<td class="num">' + fmtValue(d.value_md) + '</td>'
+      + '<td style="text-align:center;">' + yearBadge(d.year) + '</td>'
+      + '<td>' + d.description + decomp + '</td>'
+      + '<td>' + sourcesHtml(d.sources) + '</td>'
+      + '</tr>';
+  });
+  tbody.innerHTML = html;
+}
+
+function buildLinksTable(data, cfg) {
+  var tbody = document.getElementById('links-tbody');
+  if (!tbody) return;
+
+  var nodeLabels = cfg.nodes.map(function(n) { return nodeLabel(n, data); });
+
+  var html = '';
+  cfg.links.forEach(function(lnk) {
+    var d = data[lnk.amount_key];
+    if (!d) return;
+    var from = nodeLabels[lnk.source_node_id] || String(lnk.source_node_id);
+    var to   = nodeLabels[lnk.target_node_id] || String(lnk.target_node_id);
+    var badge = d.estimate ? ' <span class="badge-estimate">estimé</span>' : '';
+    html += '<tr>'
+      + '<td><b>' + from + '</b> &rarr; <b>' + to + '</b>' + badge + '</td>'
+      + '<td class="num">' + fmtValue(d.value_md) + '</td>'
+      + '<td style="text-align:center;">' + yearBadge(d.year) + '</td>'
+      + '<td>' + d.description + '</td>'
+      + '<td>' + sourcesHtml(d.sources) + '</td>'
+      + '</tr>';
+  });
+  tbody.innerHTML = html;
+}
+
+// ============================================================
+// Export positions button
+// ============================================================
+function exportPositions() {
+  var gd = document.getElementById('sankey-div');
+  if (!gd || !gd._fullData || !gd._fullData[0]) {
+    alert('Le diagramme n\'est pas encore chargé.');
+    return;
+  }
+  var nodes = gd._fullData[0].node;
+  var n = nodes.label.length;
+  var out = '# Positions extraites après drag manuel\n';
+  out += '# Mettre à jour sankey.json : x/y de chaque nœud\n';
+  out += 'node_x = [';
+  for (var i = 0; i < n; i++) out += nodes.x[i].toFixed(3) + (i < n-1 ? ', ' : '');
+  out += ']\nnode_y = [';
+  for (var i = 0; i < n; i++) out += nodes.y[i].toFixed(3) + (i < n-1 ? ', ' : '');
+  out += ']\n\n# Labels :\n';
+  for (var i = 0; i < n; i++) {
+    out += '# ' + i + ': ' + nodes.label[i]
+      + ' (x=' + nodes.x[i].toFixed(3) + ', y=' + nodes.y[i].toFixed(3) + ')\n';
+  }
+  var el = document.getElementById('coords-output');
+  el.textContent = out;
+  el.style.display = 'block';
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(out).then(function() {
+      var btn = document.getElementById('export-btn');
+      btn.textContent = '✅ Copié !';
+      setTimeout(function() { btn.textContent = '📐 Exporter positions'; }, 2000);
+    }).catch(function() {});
+  }
+}
+
+// ============================================================
+// Bootstrap via fetch()
+// ============================================================
+Promise.all([
+  fetch('./flux-financement-retraites-data.json').then(function(r) { return r.json(); }),
+  fetch('./flux-financement-retraites-sankey.json').then(function(r) { return r.json(); })
+]).then(function(results) {
+  var data = results[0];
+  var cfg  = results[1];
+  buildSankey(data, cfg);
+  buildNodesTable(data, cfg);
+  buildLinksTable(data, cfg);
+}).catch(function(err) {
+  console.error('Erreur fetch:', err);
+  document.getElementById('load-error').style.display = 'block';
+});
+</script>
+
+</body>
+</html>

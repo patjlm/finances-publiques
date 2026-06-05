@@ -1,0 +1,90 @@
+% Page layout
+\usepackage[a4paper, margin=2.2cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+% Fonts
+\usepackage{fontspec}
+\setmainfont{Liberation Serif}
+\setsansfont{Liberation Sans}
+\setmonofont{Liberation Mono}[Scale=0.85]
+
+% French language
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+
+% Colors
+\usepackage{xcolor}
+\definecolor{darkblue}{HTML}{1a3c6e}
+\definecolor{midblue}{HTML}{2c5aa0}
+\definecolor{lightgray}{HTML}{f5f5f5}
+\definecolor{rulegray}{HTML}{cccccc}
+\definecolor{warnred}{HTML}{c0392b}
+\definecolor{sourcegreen}{HTML}{1e7e34}
+
+% Headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{midblue} Finances publiques fran\c{c}aises 2025}
+\fancyhead[R]{\small\sffamily\color{midblue} \'{E}tude -- 4 juin 2026}
+\fancyfoot[C]{\small\sffamily\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Section styling
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\sffamily\color{darkblue}}{\thesection}{1em}{}[\vspace{0.2em}\color{rulegray}\hrule]
+\titleformat{\subsection}{\large\bfseries\sffamily\color{midblue}}{\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\sffamily\color{midblue}}{\thesubsubsection}{0.6em}{}
+\titlespacing{\section}{0pt}{1.8em}{0.8em}
+\titlespacing{\subsection}{0pt}{1.2em}{0.4em}
+\titlespacing{\subsubsection}{0pt}{0.8em}{0.3em}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{array}
+\renewcommand{\arraystretch}{1.3}
+
+% Lists
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=1.5em}
+
+% Paragraph spacing
+\usepackage{parskip}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+% Hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=darkblue,
+  urlcolor=midblue,
+  citecolor=darkblue,
+  bookmarks=true,
+  bookmarksnumbered=true,
+  pdfauthor={botrimoine},
+  pdftitle={Finances publiques françaises 2025},
+  pdfsubject={Analyse macro des finances publiques, focus retraites},
+}
+
+% Blockquote styling
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\newtcolorbox{warningbox}{
+  colback=warnred!5,
+  colframe=warnred!50,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=6pt,
+  right=6pt,
+  top=4pt,
+  bottom=4pt,
+  breakable
+}
+
+% Long tables
+\usepackage{longtable}
+
+% Tight list fix for pandoc
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}

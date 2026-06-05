@@ -1,0 +1,479 @@
+{
+  "cotisations-cnav": {
+    "label": "Cotisations CNAV",
+    "year": "2024",
+    "value_md": 155,
+    "description": "Cotisations du régime général de base (CNAV) couvrant les salariés privés et les indépendants intégrés. Principale ressource de la branche vieillesse de la Sécurité sociale.",
+    "sources": [
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" }
+    ]
+  },
+  "cotisations-agirc-arrco": {
+    "label": "Cotisations AGIRC-ARRCO",
+    "year": "2024",
+    "value_md": 100,
+    "description": "Cotisations du régime complémentaire obligatoire du secteur privé (AGIRC-ARRCO). 20 millions de cotisants, 12,6 millions de retraités. Solde légèrement excédentaire, réserves ~80 Md€. Ces cotisations sont versées directement aux pensions AGIRC-ARRCO sans transiter par la branche CNAV.",
+    "sources": [
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" }
+    ]
+  },
+  "csg-impots-affectes": {
+    "label": "CSG / Impôts affectés",
+    "year": "2024",
+    "value_md": 25,
+    "description": "Fraction de la CSG (9,2 % sur revenus d'activité) et impôts et taxes affectés (ITAF) dirigés vers la branche vieillesse de la Sécurité sociale et le FSV (Fonds de Solidarité Vieillesse). Estimation : ~25 Md€ sur ~115-130 Md€ de CSG totale collectée par l'URSSAF.",
+    "sources": [
+      { "label": "PLFSS 2025 Annexe 3 (Assemblée nationale)", "url": "https://www2.assemblee-nationale.fr/static/17/Annexes-DL/PLFSS-2025/PLFSS2025-Annexe03.pdf" },
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" }
+    ]
+  },
+  "cotisations-cnracl": {
+    "label": "Cotisations CNRACL",
+    "year": "2024",
+    "value_md": 24,
+    "description": "Cotisations des fonctionnaires territoriaux et hospitaliers à la CNRACL (Caisse Nationale de Retraites des Agents des Collectivités Locales). Pensions versées = 27,5 Md€ ; déficit CNRACL 2025 = -3,7 Md€. Les recettes propres de cotisations sont donc d'environ 24 Md€, le solde étant couvert par des transferts de compensation démographique.",
+    "decomposition": "Pensions versées CNRACL 27,5 Md€ - déficit CNRACL -3,7 Md€ = recettes propres ≈ 24 Md€",
+    "sources": [
+      { "label": "CCSS mai 2026 (solde comptes Sécurité sociale)", "url": "https://www.securite-sociale.fr/home/medias/presse/list-presse/le-solde-des-comptes-de-la-securite-sociale-s-etablit-a-21-6-md-en-2025.html" },
+      { "label": "CNRACL chiffres clés 2023", "url": "https://www.cnracl.retraites.fr/nous-connaitre/presse/chiffres-cles/chiffres-cles-2023" },
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" }
+    ]
+  },
+  "cotisations-fonctionnaires-salariale": {
+    "label": "Cotisations fonct. (salariale)",
+    "year": "2025",
+    "value_md": 8,
+    "description": "Part salariale des fonctionnaires civils d'État versée au CAS Pensions. Taux salarial 2025 : 11,10 % × masse salariale indiciaire brute ≈ 72 Md€ → ~8 Md€. Ce flux alimente directement le CAS Pensions.",
+    "decomposition": "11,10 % (taux salarial fonctionnaire) × ~72 Md€ (masse salariale fonctionnaires civils d'État) ≈ 8 Md€",
+    "sources": [
+      { "label": "Décret n°2025-61 du 22/01/2025 (taux contributions CAS 78,28 %)", "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051020776" },
+      { "label": "URSSAF — taux de cotisations", "url": "https://www.urssaf.fr/" }
+    ]
+  },
+  "recettes-fiscales-etat": {
+    "label": "Recettes fiscales État",
+    "year": "2025",
+    "value_md": 319,
+    "description": "Recettes fiscales nettes du budget de l'État 2025. Recettes fiscales brutes = 353,8 Md€ ; moins prélèvements sur recettes (~67 Md€ : transferts aux collectivités + contribution UE) = 318,7 Md€ ≈ 319 Md€. Détail brut : TVA 175,1 + IR 121,0 + IS 83,4 + TICPE 27,4 + autres 46,9 Md€.",
+    "decomposition": "TVA 175,1 · IR 121,0 · IS 83,4 · TICPE 27,4 · autres 46,9 Md€ bruts — 67 Md€ prélèvements sur recettes ≈ 319 Md€ nets",
+    "sources": [
+      { "label": "DGFiP, Situation mensuelle budgétaire décembre 2025 (définitive)", "url": "https://www.economie.gouv.fr/files/files/directions_services/dgfip/media-document/sme_2025-12_definitive.pdf" }
+    ]
+  },
+  "dette-emprunt": {
+    "label": "Dette / Emprunt",
+    "year": "2025",
+    "value_md": 124,
+    "description": "Déficit budgétaire de l'État 2025 = -124,2 Md€, financé par émissions OAT et BTF (Agence France Trésor). L'AFT a émis 300 Md€ nets à moyen-long terme en 2025, taux moyen 3,16 %. Stock de dette publique totale : 3 460,5 Md€ (115,6 % du PIB).",
+    "decomposition": "Déficit budgétaire 2025 : -124,2 Md€. Stock dette publique : 3 460,5 Md€ (115,6 % PIB). Charge de la dette 2025 : 53,5 Md€.",
+    "sources": [
+      { "label": "INSEE Informations Rapides n°78, mars 2026", "url": "https://www.insee.fr/fr/statistiques/8956575" },
+      { "label": "MEFR communiqué solde budgétaire 2025", "url": "https://presse.economie.gouv.fr/solde-budgetaire-de-letat-de-lannee-2025/" },
+      { "label": "AFT, financement de l'État 2026 et actualisation 2025", "url": "https://www.aft.gouv.fr/en/publications/communiques-presse/14-october-2025-french-state-funding-2026-and-update-2025" }
+    ]
+  },
+  "cotisations-autres-regimes-publics": {
+    "label": "Cotisations autres régimes publics",
+    "year": "2024",
+    "value_md": 8,
+    "description": "Cotisations propres aux régimes publics non couverts par les flux CAS/CNRACL/Budget explicites dans ce diagramme. Comprend : IRCANTEC (retraite complémentaire des agents contractuels publics, ~3 Md€), RAFP (Retraite Additionnelle de la Fonction Publique sur les primes, ~1,5 Md€), FSPOEIE (ouvriers de l'État, ~0,5 Md€), cotisations propres salariés SNCF/RATP/ENIM/marins (~3 Md€). Valeur dérivée pour équilibrer le nœud Pensions publiques.",
+    "decomposition": "IRCANTEC ~3 + RAFP ~1,5 + FSPOEIE ~0,5 + SNCF/RATP/ENIM ~3 ≈ 8 Md€",
+    "estimate": true,
+    "sources": [
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" },
+      { "label": "Sénat, rapport PLF 2025 (régimes spéciaux)", "url": "https://www.senat.fr/rap/l24-144-325/l24-144-32516.html" }
+    ]
+  },
+  "budget-etat": {
+    "label": "Budget de l'État",
+    "year": "2025",
+    "value_md": 443,
+    "description": "Charges nettes du budget général de l'État 2025, représentées dans ce diagramme comme somme des ressources : 319 Md€ (recettes fiscales nettes) + 124 Md€ (déficit / emprunt) = 443 Md€. Déficit budgétaire réel : -124,2 Md€. Charge de la dette : 53,5 Md€. Hors comptes spéciaux.",
+    "decomposition": "Recettes fiscales nettes 319 Md€ + déficit (emprunt) 124 Md€ = 443 Md€",
+    "sources": [
+      { "label": "DGFiP, Situation mensuelle budgétaire décembre 2025 (définitive)", "url": "https://www.economie.gouv.fr/files/files/directions_services/dgfip/media-document/sme_2025-12_definitive.pdf" },
+      { "label": "budget.gouv.fr — chiffres clés du budget de l'État 2025", "url": "https://www.budget.gouv.fr/reperes/budget/articles/chiffres-cles-budget-etat-2025" }
+    ]
+  },
+  "secu-vieillesse": {
+    "label": "Sécu vieillesse (branche CNAV)",
+    "year": "2024/2025",
+    "value_md": 209.5,
+    "description": "Nœud intermédiaire représentant les ressources de la branche vieillesse de la Sécurité sociale modélisées dans ce diagramme : cotisations CNAV (155) + CSG/impôts affectés (25) + FSV/Budget (8) + transferts inter-branches autres régimes sécu (16,8) + compensation allègements vieillesse (4,7) = 209,5 Md€. Note : le périmètre CCSS de la branche vieillesse (304 Md€ de dépenses totales 2025) est différent du périmètre COR des pensions CNAV retenu ici. Le déficit branche (-7,2 Md€ selon CCSS) est absorbé dans le nœud Autres dépenses vieillesse.",
+    "decomposition": "Cotisations CNAV 155 + CSG/impôts 25 + FSV/Budget 8 + transferts inter-branches 16,8 + compensation allègements 4,7 = 209,5 Md€",
+    "sources": [
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" },
+      { "label": "CCSS mai 2026 (solde comptes Sécurité sociale)", "url": "https://www.securite-sociale.fr/home/medias/presse/list-presse/le-solde-des-comptes-de-la-securite-sociale-s-etablit-a-21-6-md-en-2025.html" }
+    ]
+  },
+  "cas-pensions": {
+    "label": "CAS Pensions",
+    "year": "2024",
+    "value_md": 65,
+    "description": "Compte d'Affectation Spéciale « Pensions » : retraites des fonctionnaires civils et militaires de l'État. Recettes réelles 2024 = 64,7 Md€ / Dépenses réelles = 68,2 Md€ / Déficit CAS = -3,5 Md€. Dont : pensions civiles ~53,8 Md€, pensions militaires ~9,8 Md€. Ressources : cotisations salariales fonctionnaires (8 Md€ à 11,10 %), cotisation employeur État au taux privé (12 Md€ à 16,58 %), surcotisation État (45 Md€).",
+    "decomposition": "Cotisations salariales fonctionnaires 8 + cotisation employeur taux normal 12 + surcotisation État 45 = 65 Md€ (recettes réelles CAS 2024 : 64,7 Md€)",
+    "sources": [
+      { "label": "Cour des comptes, NEB CAS Pensions 2024", "url": "https://www.ccomptes.fr/sites/default/files/2025-04/NEB-2024-Pensions_0.pdf" },
+      { "label": "retraitesdeletat.gouv.fr — statistiques CAS", "url": "https://retraitesdeletat.gouv.fr/statistiques/cas.html" }
+    ]
+  },
+  "autres-depenses-etat": {
+    "label": "Autres dépenses État",
+    "year": "2025",
+    "value_md": 347.6,
+    "description": "Solde du budget de l'État (443 Md€) non dirigé vers les retraites dans ce diagramme. Calculé comme : 443 - 95,4 Md€ (flux retraites explicites : 6 + 12 + 45 + 1,7 + 8 FSV + 8 cotis. salariales fonct. + 10 subvention MSA + 4,7 compensation allègements) = 347,6 Md€. Comprend notamment : enseignement scolaire 88,6 Md€, charge de la dette 53,5 Md€, défense 59,95 Md€, recherche 31,3 Md€, solidarité 31,1 Md€, intérieur, justice, etc.",
+    "decomposition": "443 Md€ - 95,4 Md€ flux retraites explicites = 347,6 Md€",
+    "estimate": true,
+    "sources": [
+      { "label": "DGFiP, Situation mensuelle budgétaire décembre 2025 (définitive)", "url": "https://www.economie.gouv.fr/files/files/directions_services/dgfip/media-document/sme_2025-12_definitive.pdf" },
+      { "label": "LFI 2025 — documents budgétaires", "url": "https://www.budget.gouv.fr/documentation/documents-budgetaires-plf-pap/exercice-2025/loi-finances-initiale-2025-lfi" }
+    ]
+  },
+  "subventions-regimes-speciaux": {
+    "label": "Subventions régimes spéciaux",
+    "year": "2025",
+    "value_md": 6,
+    "description": "Mission « Régimes sociaux et de retraite » : subventions d'équilibre aux régimes spéciaux versées par le budget de l'État. SNCF 3,3 Md€, RATP 0,9 Md€, ENIM (marins) ~0,9 Md€, CANSSM (mineurs) ~0,3 Md€, autres ~0,6 Md€. Ces régimes sont fermés aux nouveaux entrants (réforme 2008) et leur déficit démographique croissant est compensé par l'État.",
+    "decomposition": "SNCF 3,3 + RATP 0,9 + ENIM ~0,9 + CANSSM ~0,3 + autres ~0,6 ≈ 6 Md€",
+    "sources": [
+      { "label": "Sénat, rapport PLF 2025 — mission Régimes sociaux et de retraite", "url": "https://www.senat.fr/rap/l24-144-325/l24-144-32516.html" }
+    ]
+  },
+  "cotisation-employeur-taux-normal": {
+    "label": "Cotisation employeur État (taux privé)",
+    "year": "2025",
+    "value_md": 12,
+    "description": "Part de la cotisation employeur de l'État versée au CAS Pensions correspondant au taux du secteur privé : 16,58 % × masse salariale indiciaire brute ≈ 72 Md€ → ~12 Md€. Cette partie est comparable à ce qu'un employeur privé paierait. La différence avec le taux réel (78,28 %) constitue la « surcotisation ».",
+    "decomposition": "16,58 % (taux employeur privé URSSAF) × ~72 Md€ (masse salariale civils État) ≈ 12 Md€",
+    "estimate": true,
+    "sources": [
+      { "label": "URSSAF — taux de cotisations patronales retraite", "url": "https://www.urssaf.fr/" },
+      { "label": "Décret n°2025-61 du 22/01/2025 (taux contributions CAS 78,28 %)", "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051020776" }
+    ]
+  },
+  "surcotisation-etat-cas": {
+    "label": "Surcotisation État → CAS",
+    "year": "2025",
+    "value_md": 45,
+    "description": "Surcotisation patronale de l'État : écart entre le taux réel fixé par décret (78,28 % en 2025, 82,28 % en 2026) et le taux du secteur privé (16,58 %) appliqué à la masse salariale des fonctionnaires civils d'État. Estimation Fipeco : ~45 Md€. Estimation IPP : 18-28,9 Md€ (selon le taux d'équilibre actuariel retenu). Le taux est fixé chaque année pour équilibrer le CAS et couvrir le déficit démographique (ratio cotisants/retraités CAS < 0,8).",
+    "decomposition": "(78,28 % - 16,58 %) × ~72 Md€ masse salariale = 61,70 % × 72 ≈ 44,4 Md€ ≈ 45 Md€ (estimation Fipeco). IPP : 18-28,9 Md€ selon taux d'équilibre actuariel.",
+    "estimate": true,
+    "sources": [
+      { "label": "Décret n°2025-61 du 22/01/2025 (taux 78,28 % en 2025)", "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051020776" },
+      { "label": "Décret n°2025-1341 (taux 82,28 % en 2026)", "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053175170" },
+      { "label": "Fipeco — Les retraites des fonctionnaires", "url": "https://www.fipeco.fr/fiche/Les-retraites-des-fonctionnaires" },
+      { "label": "IPP — chapitre CAS Pensions (PDF)", "url": "https://www.ipp.eu/wp-content/uploads/2025/07/chapitre_CAS_PENSION-7.pdf" }
+    ]
+  },
+  "deficit-cor": {
+    "label": "Déficit officiel COR",
+    "year": "2024",
+    "value_md": 1.7,
+    "description": "Déficit officiel du système de retraites selon la convention EPR (État Preneur de Risques) retenue par le COR. Résultat 2024 : -1,7 Md€ = -0,1 % du PIB. Cette valeur correspond au « quasi-équilibre » affiché dans la synthèse COR. La convention alternative EEC (État Employeur de Cotisants) donne un résultat différent. Dans ce diagramme, ce flux représente la contribution directe du budget de l'État pour couvrir le solde négatif global.",
+    "sources": [
+      { "label": "COR synthèse juin 2025 (PDF)", "url": "https://www.cor-retraites.fr/sites/default/files/2025-06/Synth%C3%A8se_Def_.pdf" },
+      { "label": "COR annexe méthodologique (conventions EPR vs EEC)", "url": "https://www.cor-retraites.fr/sites/default/files/2025-06/M%C3%A9thodologie_RA.pdf" }
+    ]
+  },
+  "transferts-inter-branches": {
+    "label": "Transferts inter-branches sécu",
+    "year": "2024",
+    "value_md": 16.8,
+    "description": "Transferts versés par d'autres branches de la Sécurité sociale à la branche vieillesse (CNAV) pour financer des droits à la retraite acquis hors période de cotisation active. Ces transferts ne proviennent PAS du budget de l'État — ils viennent des autres branches de la sécu, financées par leurs propres prélèvements obligatoires. Détail 2024 : CNAF (famille) 10,9 Md€ — prise en charge des cotisations retraite pendant congés maternité, paternité, adoption et AVPF (Assurance Vieillesse des Parents au Foyer) ; financé par CSG affectée famille + cotisations patronales famille. UNEDIC (chômage) 4,0 Md€ — prise en charge des cotisations retraite des chômeurs indemnisés ; financé par cotisations patronales + salariales chômage (~4 % des salaires) ; institution paritaire employeurs/syndicats, indépendante du budget de l'État. CNAM (assurance maladie) 1,2 Md€ — prise en charge des cotisations retraite pendant arrêts maladie longue durée ; financé par CSG maladie + cotisations maladie. URSSAF-CN/autres 0,7 Md€. Ces transferts font partie des 82,6 Md€ de « subventions implicites » selon Beaufret/Fondapol (2025), qui les analyse comme des flux croisés révélant que le système vieillesse est financé bien au-delà des cotisations strictement contributives.",
+    "decomposition": "CNAF (famille) 10,9 + UNEDIC (chômage) 4,0 + CNAM (maladie) 1,2 + autres 0,7 = 16,8 Md€",
+    "sources": [
+      { "label": "CCSS rapport juin 2025 (comptes par branche)", "url": "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2025/Rapport%20CCSS%20juin_BAT_%20avec%20couverture.pdf" },
+      { "label": "Jean-Pascal Beaufret, Fondapol, février 2025 (tableau 3, p. 17)", "url": "https://www.fondapol.org/app/uploads/2025/02/259_beaufret_fr_2025-02-10_w.pdf" },
+      { "label": "Fondapol — Synthèse Beaufret (mission flash retraites)", "url": "https://www.fondapol.org/decryptage/synthese-contribution-a-la-mission-flash-de-clarification-du-financement-des-retraites/" }
+    ]
+  },
+  "fsv-transferts": {
+    "label": "FSV et transferts Budget → Sécu",
+    "year": "2025",
+    "value_md": 8,
+    "description": "Transferts du budget de l'État vers la branche vieillesse via le FSV (Fonds de Solidarité Vieillesse) et autres mécanismes. Le FSV finance les droits non contributifs (périodes de chômage, maladie, maternité) et contribue au minimum vieillesse (ASPA). Solde FSV 2025 : +0,4 Md€. Ce flux inclut également d'éventuelles subventions directes du Budget à la branche.",
+    "sources": [
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" },
+      { "label": "PLFSS 2025 Annexe 3 (Assemblée nationale)", "url": "https://www2.assemblee-nationale.fr/static/17/Annexes-DL/PLFSS-2025/PLFSS2025-Annexe03.pdf" }
+    ]
+  },
+  "pensions-cnav": {
+    "label": "Pensions CNAV versées",
+    "year": "2024",
+    "value_md": 159,
+    "description": "Pensions versées par le régime général de base (CNAV) aux retraités du secteur privé. Ces pensions transitent par la Sécu vieillesse (branche CNAV) et représentent la principale dépense de la branche. Déficit CNAV 2025 : -7,2 Md€ (dépenses réelles > recettes modélisées, écart absorbé dans Autres dépenses vieillesse). Ratio cotisants/retraités CNAV : 1,39 (en baisse).",
+    "sources": [
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" },
+      { "label": "CCSS mai 2026 (solde comptes Sécurité sociale)", "url": "https://www.securite-sociale.fr/home/medias/presse/list-presse/le-solde-des-comptes-de-la-securite-sociale-s-etablit-a-21-6-md-en-2025.html" }
+    ]
+  },
+  "transferts-compensation-cnracl": {
+    "label": "Transferts compensation → CNRACL",
+    "year": "2024",
+    "value_md": 4,
+    "description": "Transferts de compensation démographique reçus par la CNRACL en provenance de la branche vieillesse (CNAV). La CNRACL, longtemps prélevée (~100 Md€ constants cumulés sur 50 ans), reçoit désormais des compensations de régimes excédentaires pour couvrir son déficit croissant (-3,7 Md€ en 2025). Estimation.",
+    "estimate": true,
+    "sources": [
+      { "label": "CCSS rapport juin 2025", "url": "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2025/Rapport%20CCSS%20juin_BAT_%20avec%20couverture.pdf" }
+    ]
+  },
+  "autres-depenses-vieillesse": {
+    "label": "Autres dépenses vieillesse",
+    "year": "2024/2025",
+    "value_md": 46.5,
+    "description": "Solde du nœud Sécu vieillesse non affecté aux pensions CNAV (159 Md€) ni aux transferts compensation CNRACL (4 Md€). Comprend : ASPA/minimum vieillesse (~4 Md€), frais de gestion administrative CNAV (~3,5 Md€), transferts de compensation démographique sortants vers d'autres régimes (~10 Md€), déficit comptable de la branche 2025 (-7,2 Md€ selon CCSS, dépenses réelles > recettes modélisées), et le coût des droits financés par les transferts inter-branches (CNAF/UNEDIC/CNAM financent des droits inclus dans les 159 Md€ de pensions). Valeur dérivée pour équilibrer le nœud.",
+    "decomposition": "Solde nœud Sécu : 209,5 entrées - 159 pensions CNAV - 4 compensation CNRACL = 46,5 Md€",
+    "estimate": true,
+    "sources": [
+      { "label": "CCSS mai 2026 (solde branche vieillesse -7,2 Md€)", "url": "https://www.securite-sociale.fr/home/medias/presse/list-presse/le-solde-des-comptes-de-la-securite-sociale-s-etablit-a-21-6-md-en-2025.html" },
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" }
+    ]
+  },
+  "pensions-privé": {
+    "label": "Pensions privé",
+    "year": "2024",
+    "value_md": 259,
+    "description": "Total des pensions versées aux retraités du secteur privé. CNAV (régime de base) : 159 Md€ + AGIRC-ARRCO (complémentaire obligatoire) : 100 Md€ = 259 Md€. Ratio cotisants/retraités AGIRC-ARRCO : 2,2. Ratio CNAV : 1,39.",
+    "decomposition": "CNAV 159 + AGIRC-ARRCO 100 = 259 Md€",
+    "sources": [
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" }
+    ]
+  },
+  "pensions-publiques": {
+    "label": "Pensions publiques",
+    "year": "2024",
+    "value_md": 107,
+    "description": "Total des pensions versées aux retraités du secteur public. CAS Pensions (fonctionnaires civils et militaires de l'État) : ~65 Md€ · CNRACL (fonctionnaires territoriaux et hospitaliers) : 27,5 Md€ · Régimes spéciaux (SNCF, RATP, marins ENIM, mineurs CANSSM...) : ~11 Md€ · Autres régimes publics (IRCANTEC, RAFP, FSPOEIE) : ~6,6 Md€ ≈ 107 Md€. Ratio cotisants/retraités CAS < 0,8 (déséquilibre démographique structurel).",
+    "decomposition": "CAS Pensions 65 + CNRACL 27,5 + régimes spéciaux ~11 + IRCANTEC/RAFP/autres ~6,6 ≈ 107 Md€",
+    "sources": [
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" },
+      { "label": "Cour des comptes, NEB CAS Pensions 2024", "url": "https://www.ccomptes.fr/sites/default/files/2025-04/NEB-2024-Pensions_0.pdf" },
+      { "label": "Sénat, rapport PLF 2025 (régimes spéciaux)", "url": "https://www.senat.fr/rap/l24-144-325/l24-144-32516.html" }
+    ]
+  },
+  "total-pensions": {
+    "label": "TOTAL PENSIONS (COR officiel)",
+    "year": "2024",
+    "value_md": 407,
+    "description": "Total des pensions versées tous régimes confondus. Pensions privé (259) + pensions publiques (107) + autres régimes MSA/professions libérales/divers (41) = 407 Md€. Ce chiffre correspond au total officiel COR du rapport annuel juin 2025 : 406,9 Md€ = 13,9 % du PIB.",
+    "decomposition": "Pensions privé 259 + pensions publiques 107 + autres régimes (MSA, PL...) 41 = 407 Md€ (COR officiel : 406,9 Md€)",
+    "sources": [
+      { "label": "COR synthèse juin 2025 (PDF)", "url": "https://www.cor-retraites.fr/sites/default/files/2025-06/Synth%C3%A8se_Def_.pdf" },
+      { "label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france" }
+    ]
+  },
+  "collectivites-hopitaux": {
+    "label": "Collectivités / Hôpitaux",
+    "year": "2024",
+    "value_md": 24,
+    "description": "Budgets des collectivités territoriales (communes, départements, régions) et des établissements publics hospitaliers, employeurs des fonctionnaires CNRACL. Financés par : fiscalité locale propre (~65 % : taxe foncière, CVAE, droits de mutation), DGF État (~27 Md€/an) et autres dotations (~35 %), ONDAM pour les hôpitaux. Environ 30-35 % de leurs ressources proviennent indirectement de l'État.",
+    "sources": [
+      {"label": "CCSS rapport juin 2025", "url": "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2025/Rapport%20CCSS%20juin_BAT_%20avec%20couverture.pdf"},
+      {"label": "CNRACL chiffres clés 2023", "url": "https://www.cnracl.retraites.fr/nous-connaitre/presse/chiffres-cles/chiffres-cles-2023"}
+    ]
+  },
+  "cotisations-cnracl-taux-normal": {
+    "label": "Cotisations CNRACL (taux normal)",
+    "year": "2024",
+    "value_md": 15.2,
+    "description": "Part des cotisations CNRACL correspondant au taux « normal » du secteur privé : 16,58 % × masse salariale CNRACL (~59 Md€) ≈ 9,8 Md€ patronal + part salariale ~5,4 Md€ ≈ 15,2 Md€. C'est la fraction que paierait un employeur privé à qualification équivalente.",
+    "decomposition": "16,58 % (taux patronal privé) × ~59 Md€ masse salariale CNRACL ≈ 9,8 Md€ + part salariale ~5,4 Md€ ≈ 15,2 Md€",
+    "estimate": true,
+    "sources": [
+      {"label": "URSSAF — taux de cotisations", "url": "https://www.urssaf.fr/"},
+      {"label": "CNRACL chiffres clés 2023", "url": "https://www.cnracl.retraites.fr/nous-connaitre/presse/chiffres-cles/chiffres-cles-2023"}
+    ]
+  },
+  "surcotisation-cnracl": {
+    "label": "Surcotisation CNRACL (collectivités / hôpitaux)",
+    "year": "2024",
+    "value_md": 8.8,
+    "description": "Surcotisation patronale des collectivités territoriales et hôpitaux au régime CNRACL : écart entre le taux réel (~30,65 %) et le taux privé (16,58 %) × masse salariale CNRACL (~59 Md€). Même mécanique que la surcotisation État au CAS Pensions, mais la source est les budgets locaux et hospitaliers (pas le budget de l'État central). Estimation Beaufret/Fondapol 2025 : 8,8 Md€ (tableau 3, p. 17).",
+    "decomposition": "(30,65 % - 16,58 %) × ~59 Md€ ≈ 14,07 % × 59 ≈ 8,3 Md€ ≈ 8,8 Md€ (Beaufret)",
+    "estimate": true,
+    "sources": [
+      {"label": "Jean-Pascal Beaufret, Fondapol, février 2025 (tableau 3)", "url": "https://www.fondapol.org/app/uploads/2025/02/259_beaufret_fr_2025-02-10_w.pdf"},
+      {"label": "Fondapol — Synthèse", "url": "https://www.fondapol.org/decryptage/synthese-contribution-a-la-mission-flash-de-clarification-du-financement-des-retraites/"}
+    ]
+  },
+  "cotisations-msa-pl-autres": {
+    "label": "Cotisations MSA / professions libérales / autres",
+    "year": "2024",
+    "value_md": 31,
+    "description": "Cotisations propres des régimes non modélisés explicitement dans ce diagramme. Agriculture (MSA base + complémentaire CCMSA) : ~7 Md€ (taux de cotisation faibles sur revenus agricoles souvent modestes). Professions libérales (CNAVPL, CARMF médecins, CAVEC experts-comptables, CARPIMKO paramédics, CARCDSF dentistes/sages-femmes, CNBF avocats, CIPAV professions diverses) : ~18 Md€ — ces régimes sont globalement à l'équilibre ou excédentaires, financés par des cotisations souvent élevées. Autres petits régimes (CAVIMAC ministres du culte, CRPCEN clercs de notaires, CAMNAVIC, etc.) : ~6 Md€.",
+    "decomposition": "MSA ~7 + professions libérales ~18 + autres petits régimes ~6 ≈ 31 Md€",
+    "estimate": true,
+    "sources": [
+      {"label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france"},
+      {"label": "DREES — Les retraités et les retraites, édition 2025", "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse-documents-de-reference/250731_PANORAMAS-retraites"}
+    ]
+  },
+  "subvention-etat-msa-autres": {
+    "label": "Subvention État — MSA et autres régimes",
+    "year": "2024",
+    "value_md": 10,
+    "description": "Transferts du budget de l'État vers les régimes agricoles (MSA) et autres petits régimes non couverts par la mission « Régimes sociaux et de retraite ». La MSA agriculture est fortement déficitaire démographiquement (exode rural, mécanisation) : ses charges (~14 Md€) dépassent largement ses cotisations propres (~7 Md€). L'État compense ce déséquilibre via une subvention d'équilibre. Les professions libérales (CNAVPL) ne reçoivent pas de subvention d'État. Estimation : déficit MSA ~6-7 Md€ + subventions autres petits régimes ~3 Md€ ≈ 10 Md€.",
+    "estimate": true,
+    "sources": [
+      {"label": "COR, Rapport annuel juin 2025 (besoin financement agriculture -6 Md€)", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france"},
+      {"label": "Jean-Pascal Beaufret, Fondapol, février 2025", "url": "https://www.fondapol.org/app/uploads/2025/02/259_beaufret_fr_2025-02-10_w.pdf"}
+    ]
+  },
+  "pensions-autres-regimes": {
+    "label": "Pensions autres régimes",
+    "year": "2024",
+    "value_md": 41,
+    "description": "Pensions versées par les régimes non modélisés explicitement dans ce diagramme : agriculture/MSA (~14 Md€), professions libérales (CNAVPL et sections : médecins, avocats, experts-comptables, paramédics, etc.) (~19 Md€), autres petits régimes (CAVIMAC, CRPCEN, CAMNAVIC, etc.) (~8 Md€). Ce nœud permet d'atteindre le total officiel COR de 406,9 Md€ (13,9 % du PIB, rapport annuel juin 2025) : 366 Md€ modélisés + 41 Md€ = 407 Md€.",
+    "decomposition": "MSA ~14 + professions libérales ~19 + autres ~8 ≈ 41 Md€ (COR total tous régimes 406,9 Md€ - 366 Md€ modélisés = 40,9 Md€ ≈ 41 Md€)",
+    "sources": [
+      {"label": "COR, Rapport annuel juin 2025 (total 406,9 Md€)", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france"},
+      {"label": "DREES — Les retraités et les retraites, édition 2025", "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse-documents-de-reference/250731_PANORAMAS-retraites"}
+    ]
+  },
+  "compensation-allegements-vieillesse": {
+    "label": "Compensation allègements cotisations → vieillesse",
+    "year": "2024",
+    "value_md": 4.7,
+    "description": "Part de la compensation versée par l'État à la branche vieillesse pour compenser les allègements généraux de cotisations patronales sur les bas salaires (jusqu'à 1,6x SMIC). L'État exonère les employeurs de ~77 Md€/an de cotisations sociales sur les bas salaires ; pour compenser les branches de la sécu des recettes manquantes, il leur transfère une fraction de TVA et autres taxes affectées. La part attribuée à la branche vieillesse est estimée à ~4,7 Md€ par Beaufret (2025). Cette compensation provient des recettes fiscales de l'État (TVA), PAS du déficit/dette.",
+    "decomposition": "~77 Md€ total allègements × part vieillesse ≈ 4,7 Md€ (estimation Beaufret)",
+    "estimate": true,
+    "sources": [
+      {"label": "Jean-Pascal Beaufret, Fondapol, février 2025 (tableau 3)", "url": "https://www.fondapol.org/app/uploads/2025/02/259_beaufret_fr_2025-02-10_w.pdf"},
+      {"label": "PLFSS 2025 Annexe 3 (allègements et compensations)", "url": "https://www2.assemblee-nationale.fr/static/17/Annexes-DL/PLFSS-2025/PLFSS2025-Annexe03.pdf"}
+    ]
+  },
+  "dotations-etat-collectivites": {
+    "label": "Dotations État → Collectivités territoriales",
+    "year": "2025",
+    "value_md": 60,
+    "description": "Prélèvements sur recettes de l'État au profit des collectivités territoriales. Principales dotations : Dotation Globale de Fonctionnement (DGF) ~27 Md€ · FCTVA (Fonds de Compensation de la TVA) ~7 Md€ · dotations de péréquation (DSU, DSR, FSRIF) ~5 Md€ · compensations d'exonérations fiscales ~10 Md€ · autres dotations (DETR, DSIL, etc.) ~11 Md€ ≈ 60 Md€. Ces transferts couvrent ~25-30 % du budget de fonctionnement des collectivités ; le reste est financé par la fiscalité locale propre (~130 Md€) et d'autres recettes.",
+    "sources": [
+      {"label": "DGFiP, Situation mensuelle budgétaire décembre 2025", "url": "https://www.economie.gouv.fr/files/files/directions_services/dgfip/media-document/sme_2025-12_definitive.pdf"},
+      {"label": "LFI 2025 — prélèvements sur recettes", "url": "https://www.budget.gouv.fr/documentation/documents-budgetaires-plf-pap/exercice-2025/loi-finances-initiale-2025-lfi"}
+    ]
+  },
+  "fiscalite-locale-collectivites": {
+    "label": "Fiscalité locale (collectivités territoriales)",
+    "year": "2025",
+    "value_md": 130,
+    "description": "Recettes fiscales propres des collectivités territoriales (communes, EPCI, départements, régions) : taxes et contributions levées directement sur les contribuables locaux, sans transiter par le budget de l'État. Principales composantes 2025 (estimation) : taxe foncière sur propriétés bâties et non bâties ~50 Md€ · CVAE (cotisation sur valeur ajoutée des entreprises, régime post-réforme) ~9 Md€ · CFE (cotisation foncière des entreprises) ~8 Md€ · droits de mutation à titre onéreux (DMTO, ventes immobilières) ~15 Md€ · versement mobilité (Île-de-France + autres) ~12 Md€ · TaSCom, TSE et autres taxes locales ~36 Md€ ≈ 130 Md€. Ces recettes financent les salaires des agents territoriaux (FPT), dont les cotisations CNRACL.",
+    "estimate": true,
+    "sources": [
+      {"label": "DGFiP — fiscalité locale 2025", "url": "https://www.impots.gouv.fr/portail/les-statistiques"},
+      {"label": "OFGL (Observatoire des Finances et de la Gestion Locales)", "url": "https://www.ofgl.fr/"}
+    ]
+  },
+  "ondam-hopitaux-publics": {
+    "label": "ONDAM hôpitaux publics (via CNAM)",
+    "year": "2025",
+    "value_md": 80,
+    "description": "Dotations versées par la Caisse Nationale d'Assurance Maladie (CNAM) aux établissements publics de santé (CHU, centres hospitaliers, hôpitaux locaux, EHPAD publics) via l'Objectif National des Dépenses d'Assurance Maladie (ONDAM). ONDAM 2025 total : 263,9 Md€ décomposés en : soins de ville ~112 Md€ (médecins, pharmacies, biologie) · établissements de santé ~102 Md€ dont public ~80 Md€ (CHU, CH, hôpitaux locaux : financement T2A/GHS ~65 %, dotations MIG urgences/enseignement/recherche ~20 %, DAF/FIR ~15 %) et privé/cliniques ~22 Md€ (Objectif Quantifié National) · médico-social ~34 Md€ (EHPAD, HAD, handicap) · autres ~16 Md€. La CNAM (Sécu maladie) est financée par : cotisations maladie des employeurs publics et privés (taux patronal ~7 %, taux salarial 0,75 %, mêmes taux secteur public et privé — pas de surcotisation maladie contrairement aux retraites) · fraction maladie de la CSG (6,45 % sur revenus d'activité) · impôts et taxes affectés (ITAF : taxes tabac, alcool, mutuelles) ~17 Md€. Les déficits CNAM s'accumulent dans la CADES (Caisse d'Amortissement de la Dette Sociale) financée par la CRDS (~8 Md€/an) et une faible contribution de l'État (~2 Md€/an). Ces dotations financent les salaires du personnel hospitalier public (FPH), dont les cotisations CNRACL.",
+    "estimate": true,
+    "sources": [
+      {"label": "LFSS 2025 — ONDAM hospitalier", "url": "https://www.securite-sociale.fr/home/plfss.html"},
+      {"label": "DREES — Les établissements de santé, édition 2025", "url": "https://drees.solidarites-sante.gouv.fr/"}
+    ]
+  },
+  "cnracl-cotisations-territoriale": {
+    "label": "Cotisations CNRACL (FPT)",
+    "year": "2024",
+    "value_md": 14.4,
+    "description": "Part des cotisations CNRACL versées par les employeurs de la Fonction Publique Territoriale (communes, EPCI, départements, régions, CDG). Estimation : ~60 % des 24 Md€ de cotisations CNRACL totales, basée sur la répartition des affiliés (~1,9 M agents FPT / ~3,0 M total CNRACL). Inclut taux patronal (~28,85 % masse salariale) + taux salarial (~9,14 %) + surcotisation structurelle. Les budgets FPT sont financés par la fiscalité locale (~130 Md€) et les dotations de l'État (~60 Md€).",
+    "decomposition": "~60 % × 24 Md€ cotisations CNRACL totales ≈ 14,4 Md€ (taux normal 9,1 + surcotisation 5,3)",
+    "estimate": true,
+    "sources": [
+      {"label": "CNRACL chiffres clés 2023", "url": "https://www.cnracl.retraites.fr/nous-connaitre/presse/chiffres-cles/chiffres-cles-2023"},
+      {"label": "CCSS rapport juin 2025", "url": "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2025/Rapport%20CCSS%20juin_BAT_%20avec%20couverture.pdf"}
+    ]
+  },
+  "cnracl-cotisations-hospitaliere": {
+    "label": "Cotisations CNRACL (FPH)",
+    "year": "2024",
+    "value_md": 9.6,
+    "description": "Part des cotisations CNRACL versées par les établissements publics hospitaliers (CHU, centres hospitaliers, EHPAD publics). Estimation : ~40 % des 24 Md€ de cotisations CNRACL totales, basée sur ~1,1 M agents FPH / ~3,0 M total. Inclut taux patronal (~28,85 %) + taux salarial (~9,14 %) + surcotisation structurelle. Les budgets hospitaliers sont financés principalement par l'ONDAM versé par la CNAM (~80 Md€ pour les établissements publics).",
+    "decomposition": "~40 % × 24 Md€ cotisations CNRACL totales ≈ 9,6 Md€ (taux normal 6,1 + surcotisation 3,5)",
+    "estimate": true,
+    "sources": [
+      {"label": "CNRACL chiffres clés 2023", "url": "https://www.cnracl.retraites.fr/nous-connaitre/presse/chiffres-cles/chiffres-cles-2023"},
+      {"label": "CCSS rapport juin 2025", "url": "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2025/Rapport%20CCSS%20juin_BAT_%20avec%20couverture.pdf"}
+    ]
+  },
+  "cnaf-transfert-vieillesse": {
+    "label": "CNAF → Sécu vieillesse (droits familiaux)",
+    "year": "2024",
+    "value_md": 10.9,
+    "description": "Transfert de la Caisse Nationale des Allocations Familiales (CNAF / branche famille) vers la branche vieillesse (CNAV) pour financer les droits à retraite acquis pendant les congés liés à la famille. Principales composantes : AVPF (Assurance Vieillesse des Parents au Foyer) — validation de trimestres pour les parents inactifs ou à temps partiel bénéficiant d'allocations familiales (~8 Md€) ; majorations de durée d'assurance pour enfants (~2 Md€) ; prise en charge des cotisations retraite pendant congés maternité, paternité, adoption (~0,9 Md€). La CNAF est financée par les cotisations patronales famille (~3,45 % du salaire) et la fraction famille de la CSG (~1,1 %). Ce transfert NE provient PAS du budget de l'État — c'est une redistribution interne entre branches Sécu.",
+    "sources": [
+      {"label": "CCSS rapport juin 2025 (comptes par branche)", "url": "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2025/Rapport%20CCSS%20juin_BAT_%20avec%20couverture.pdf"},
+      {"label": "Jean-Pascal Beaufret, Fondapol, février 2025 (tableau 3, p. 17)", "url": "https://www.fondapol.org/app/uploads/2025/02/259_beaufret_fr_2025-02-10_w.pdf"}
+    ]
+  },
+  "unedic-transfert-vieillesse": {
+    "label": "UNEDIC → Sécu vieillesse (droits chômage)",
+    "year": "2024",
+    "value_md": 4.0,
+    "description": "Transfert de l'UNEDIC (assurance chômage) vers la branche vieillesse (CNAV) pour financer les droits à retraite validés pendant les périodes de chômage indemnisé. Les chômeurs en ARE (Allocation de Retour à l'Emploi) continuent à valider des trimestres de retraite ; le coût de ces droits est pris en charge par l'UNEDIC via un transfert à la CNAV. L'UNEDIC est une institution paritaire (MEDEF, CPME, U2P côté employeurs — CFDT, CGT, FO, CFE-CGC, CFTC côté syndicats) entièrement indépendante du budget de l'État. Financée par cotisations chômage (patronales ~4,05 % + salariales ~2,40 % du salaire brut). Ce transfert NE provient PAS du budget de l'État.",
+    "sources": [
+      {"label": "CCSS rapport juin 2025 (comptes par branche)", "url": "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2025/Rapport%20CCSS%20juin_BAT_%20avec%20couverture.pdf"},
+      {"label": "UNEDIC — rapport financier 2024", "url": "https://www.unedic.org/publications/rapport-financier"}
+    ]
+  },
+  "cnam-transfert-vieillesse": {
+    "label": "CNAM + autres branches → Sécu vieillesse",
+    "year": "2024",
+    "value_md": 1.9,
+    "description": "Transferts de la branche maladie (CNAM) et d'autres branches/organismes vers la branche vieillesse (CNAV). CNAM (1,2 Md€) : prise en charge des cotisations retraite pendant les arrêts maladie longue durée (>60 jours) — les assurés en IJ (indemnités journalières longue durée) continuent à valider des droits retraite. Autres branches/URSSAF (0,7 Md€) : divers flux de compensation inter-régimes, transferts techniques. Ces montants NE proviennent PAS du budget de l'État — ce sont des redistributions internes entre branches Sécu financées par leurs propres cotisations et CSG.",
+    "sources": [
+      {"label": "CCSS rapport juin 2025 (comptes par branche)", "url": "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2025/Rapport%20CCSS%20juin_BAT_%20avec%20couverture.pdf"}
+    ]
+  },
+  "cotisations-regimes-speciaux-entreprises": {
+    "label": "Cotisations propres régimes spéciaux (SNCF/RATP/ENIM)",
+    "year": "2024",
+    "value_md": 3,
+    "description": "Cotisations versées par les employeurs et salariés des grandes entreprises publiques et régimes paritaires à leurs régimes spéciaux de retraite. SNCF (~1,5 Md€) : cotisations des cheminots actifs restants à la CPRP SNCF (Caisse de Prévoyance et de Retraite du Personnel de la SNCF) — régime fermé aux nouveaux entrants depuis 2010, financement décroissant à mesure que les actifs partent en retraite. RATP (~0,5 Md€) : cotisations des agents RATP à leur propre caisse — régime fermé depuis 2023 (réforme des régimes spéciaux). ENIM (~0,3 Md€) : Établissement National des Invalides de la Marine, cotisations des marins professionnels et armateurs. CANSSM/mines, CAVIMAC et autres (~0,7 Md€). Ces cotisations propres se distinguent des subventions d'équilibre État (subventions-regimes-speciaux, 6 Md€) qui couvrent le déficit démographique croissant de ces régimes ; ici ce sont uniquement les cotisations des actifs restants.",
+    "decomposition": "SNCF ~1,5 + RATP ~0,5 + ENIM ~0,3 + autres ~0,7 ≈ 3 Md€",
+    "estimate": true,
+    "sources": [
+      {"label": "Sénat, rapport PLF 2025 — mission Régimes sociaux et de retraite", "url": "https://www.senat.fr/rap/l24-144-325/l24-144-32516.html"},
+      {"label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france"}
+    ]
+  },
+  "cotisations-ircantec-rafp-etat": {
+    "label": "Cotisations IRCANTEC/RAFP/FSPOEIE (État)",
+    "year": "2024",
+    "value_md": 2,
+    "description": "Cotisations de retraite complémentaire et additionnelle versées par l'État en tant qu'employeur pour ses agents, en complément du CAS Pensions. IRCANTEC (~1 Md€) : retraite complémentaire des contractuels de la fonction publique d'État (agents non titulaires des ministères) — cotisation patronale État + salariale agent. RAFP (~0,5 Md€) : Retraite Additionnelle de la Fonction Publique sur les primes des fonctionnaires d'État (5 % sur primes dans la limite de 20 % du traitement brut). FSPOEIE (~0,5 Md€) : Fonds de pension des ouvriers de l'État (principalement Défense, ministères techniques) — statut différent du fonctionnaire titulaire. Ces cotisations s'ajoutent au flux CAS Pensions (65 Md€) pour compléter les droits à retraite des agents d'État qui ne sont pas fonctionnaires titulaires ou ont des primes.",
+    "decomposition": "IRCANTEC contractuels État ~1 + RAFP primes fonct. ~0,5 + FSPOEIE ~0,5 ≈ 2 Md€",
+    "estimate": true,
+    "sources": [
+      {"label": "IRCANTEC — rapport d'activité 2024", "url": "https://www.ircantec.retraites.fr/"},
+      {"label": "RAFP — rapport annuel", "url": "https://www.rafp.fr/"},
+      {"label": "COR, Rapport annuel juin 2025", "url": "https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2025-evolutions-perspectives-retraites-france"}
+    ]
+  },
+  "cotisations-ircantec-rafp-fpt": {
+    "label": "Cotisations IRCANTEC/RAFP (FPT)",
+    "year": "2024",
+    "value_md": 1.5,
+    "description": "Cotisations de retraite complémentaire (IRCANTEC) et additionnelle (RAFP) versées par les collectivités territoriales pour leurs agents, en complément des cotisations CNRACL. IRCANTEC (~1 Md€) : retraite complémentaire des contractuels FPT (agents non titulaires des communes, EPCI, départements, régions) — cotisation patronale collectivité + salariale agent. RAFP (~0,5 Md€) : retraite additionnelle sur les primes des fonctionnaires territoriaux titulaires (5 % sur primes). Ces cotisations s'ajoutent aux flux CNRACL FPT (14,4 Md€) et sont financées par les mêmes budgets locaux (fiscalité locale ~130 Md€ + dotations État ~60 Md€).",
+    "decomposition": "IRCANTEC contractuels FPT ~1 + RAFP primes fonct. territoriaux ~0,5 ≈ 1,5 Md€",
+    "estimate": true,
+    "sources": [
+      {"label": "IRCANTEC — rapport d'activité 2024", "url": "https://www.ircantec.retraites.fr/"},
+      {"label": "RAFP — rapport annuel", "url": "https://www.rafp.fr/"}
+    ]
+  },
+  "cotisations-ircantec-rafp-fph": {
+    "label": "Cotisations IRCANTEC/RAFP (FPH)",
+    "year": "2024",
+    "value_md": 1.5,
+    "description": "Cotisations de retraite complémentaire (IRCANTEC) et additionnelle (RAFP) versées par les établissements publics hospitaliers pour leurs agents, en complément des cotisations CNRACL. IRCANTEC (~1 Md€) : retraite complémentaire des contractuels FPH (agents non titulaires des CHU, centres hospitaliers, EHPAD publics) — cotisation patronale hôpital + salariale agent. RAFP (~0,5 Md€) : retraite additionnelle sur les primes des fonctionnaires hospitaliers titulaires (5 % sur primes). Ces cotisations s'ajoutent aux flux CNRACL FPH (9,6 Md€) et sont financées par les mêmes budgets hospitaliers (ONDAM ~80 Md€).",
+    "decomposition": "IRCANTEC contractuels FPH ~1 + RAFP primes fonct. hospitaliers ~0,5 ≈ 1,5 Md€",
+    "estimate": true,
+    "sources": [
+      {"label": "IRCANTEC — rapport d'activité 2024", "url": "https://www.ircantec.retraites.fr/"},
+      {"label": "RAFP — rapport annuel", "url": "https://www.rafp.fr/"}
+    ]
+  }
+}

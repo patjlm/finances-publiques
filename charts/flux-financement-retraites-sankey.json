@@ -1,0 +1,410 @@
+{
+  "nodes": [
+    {
+      "node_id": 0,
+      "amount_key": null,
+      "label_override": "Cotisations privé 255 Md€ (CNAV 155 + AGIRC-ARRCO 100)",
+      "color": "#2ca02c",
+      "x": 0.01,
+      "y": 0.903
+    },
+    {
+      "node_id": 1,
+      "amount_key": "csg-impots-affectes",
+      "color": "#1f77b4",
+      "x": 0.01,
+      "y": 0.701
+    },
+    {
+      "node_id": 2,
+      "amount_key": null,
+      "label_override": "Collectivités territoriales",
+      "color": "#9467bd",
+      "x": 0.4,
+      "y": 0.469
+    },
+    {
+      "node_id": 3,
+      "amount_key": "recettes-fiscales-etat",
+      "color": "#636363",
+      "x": 0.01,
+      "y": 0.203
+    },
+    {
+      "node_id": 4,
+      "amount_key": "dette-emprunt",
+      "color": "#d62728",
+      "x": 0.01,
+      "y": 0.399
+    },
+    {
+      "node_id": 5,
+      "amount_key": "budget-etat",
+      "label_override": "Budget de l'État 443 Md€ (déficit -124)",
+      "color": "#ff7f0e",
+      "x": 0.28,
+      "y": 0.249
+    },
+    {
+      "node_id": 6,
+      "amount_key": "secu-vieillesse",
+      "color": "#4292c6",
+      "x": 0.55,
+      "y": 0.749
+    },
+    {
+      "node_id": 7,
+      "amount_key": "cas-pensions",
+      "label_override": "CAS Pensions 65 Md€ (dont surcot. 45)",
+      "color": "#e6550d",
+      "x": 0.55,
+      "y": 0.101
+    },
+    {
+      "node_id": 8,
+      "amount_key": "pensions-privé",
+      "color": "#2ca02c",
+      "x": 0.8,
+      "y": 0.807
+    },
+    {
+      "node_id": 9,
+      "amount_key": "pensions-publiques",
+      "color": "#e6550d",
+      "x": 0.8,
+      "y": 0.283
+    },
+    {
+      "node_id": 10,
+      "amount_key": "total-pensions",
+      "color": "#333333",
+      "x": 0.95,
+      "y": 0.631
+    },
+    {
+      "node_id": 11,
+      "amount_key": "cotisations-regimes-speciaux-entreprises",
+      "color": "#8c564b",
+      "x": 0.55,
+      "y": 0.053
+    },
+    {
+      "node_id": 12,
+      "amount_key": "cnaf-transfert-vieillesse",
+      "color": "#e377c2",
+      "x": 0.01,
+      "y": 0.743
+    },
+    {
+      "node_id": 13,
+      "amount_key": "unedic-transfert-vieillesse",
+      "color": "#17becf",
+      "x": 0.01,
+      "y": 0.777
+    },
+    {
+      "node_id": 14,
+      "amount_key": "cotisations-msa-pl-autres",
+      "color": "#bcbd22",
+      "x": 0.01,
+      "y": 0.012
+    },
+    {
+      "node_id": 15,
+      "amount_key": "pensions-autres-regimes",
+      "color": "#74c476",
+      "x": 0.8,
+      "y": 0.018
+    },
+    {
+      "node_id": 16,
+      "amount_key": "fiscalite-locale-collectivites",
+      "color": "#8c6d31",
+      "x": 0.01,
+      "y": 0.524
+    },
+    {
+      "node_id": 17,
+      "amount_key": null,
+      "label_override": "CNAM / Sécu maladie",
+      "color": "#00838f",
+      "x": 0.01,
+      "y": 0.633
+    },
+    {
+      "node_id": 18,
+      "amount_key": null,
+      "label_override": "Hôpitaux publics",
+      "color": "#2b8cbe",
+      "x": 0.4,
+      "y": 0.6
+    }
+  ],
+  "links": [
+    {
+      "source_node_id": 3,
+      "target_node_id": 5,
+      "amount_key": "recettes-fiscales-etat",
+      "color": "rgba(99,99,99,0.15)"
+    },
+    {
+      "source_node_id": 4,
+      "target_node_id": 5,
+      "amount_key": "dette-emprunt",
+      "color": "rgba(214,39,40,0.25)"
+    },
+    {
+      "source_node_id": 5,
+      "target_node_id": 9,
+      "amount_key": "subventions-regimes-speciaux",
+      "color": "rgba(255,127,14,0.3)"
+    },
+    {
+      "source_node_id": 5,
+      "target_node_id": 7,
+      "amount_key": "cotisation-employeur-taux-normal",
+      "color": "rgba(255,127,14,0.3)"
+    },
+    {
+      "source_node_id": 5,
+      "target_node_id": 7,
+      "amount_key": "surcotisation-etat-cas",
+      "color": "rgba(214,39,40,0.35)"
+    },
+    {
+      "source_node_id": 5,
+      "target_node_id": 10,
+      "amount_key": "deficit-cor",
+      "color": "rgba(139,0,0,0.5)"
+    },
+    {
+      "source_node_id": 5,
+      "target_node_id": 6,
+      "amount_key": "fsv-transferts",
+      "color": "rgba(255,127,14,0.2)"
+    },
+    {
+      "source_node_id": 5,
+      "target_node_id": 6,
+      "amount_key": "compensation-allegements-vieillesse",
+      "color": "rgba(255,127,14,0.15)"
+    },
+    {
+      "source_node_id": 5,
+      "target_node_id": 7,
+      "amount_key": "cotisations-fonctionnaires-salariale",
+      "color": "rgba(152,223,138,0.45)"
+    },
+    {
+      "source_node_id": 5,
+      "target_node_id": 2,
+      "amount_key": "dotations-etat-collectivites",
+      "color": "rgba(255,127,14,0.2)"
+    },
+    {
+      "source_node_id": 7,
+      "target_node_id": 9,
+      "amount_key": "cas-pensions",
+      "color": "rgba(230,85,13,0.35)"
+    },
+    {
+      "source_node_id": 2,
+      "target_node_id": 9,
+      "amount_key": "cnracl-cotisations-territoriale",
+      "color": "rgba(148,103,189,0.25)"
+    },
+    {
+      "source_node_id": 18,
+      "target_node_id": 9,
+      "amount_key": "cnracl-cotisations-hospitaliere",
+      "color": "rgba(43,140,190,0.25)"
+    },
+    {
+      "source_node_id": 6,
+      "target_node_id": 9,
+      "amount_key": "transferts-compensation-cnracl",
+      "color": "rgba(31,119,180,0.2)"
+    },
+    {
+      "source_node_id": 11,
+      "target_node_id": 9,
+      "amount_key": "cotisations-regimes-speciaux-entreprises",
+      "color": "rgba(140,86,75,0.3)"
+    },
+    {
+      "source_node_id": 5,
+      "target_node_id": 9,
+      "amount_key": "cotisations-ircantec-rafp-etat",
+      "color": "rgba(255,127,14,0.15)"
+    },
+    {
+      "source_node_id": 2,
+      "target_node_id": 9,
+      "amount_key": "cotisations-ircantec-rafp-fpt",
+      "color": "rgba(148,103,189,0.15)"
+    },
+    {
+      "source_node_id": 18,
+      "target_node_id": 9,
+      "amount_key": "cotisations-ircantec-rafp-fph",
+      "color": "rgba(43,140,190,0.15)"
+    },
+    {
+      "source_node_id": 1,
+      "target_node_id": 6,
+      "amount_key": "csg-impots-affectes",
+      "color": "rgba(31,119,180,0.25)"
+    },
+    {
+      "source_node_id": 0,
+      "target_node_id": 6,
+      "amount_key": "cotisations-cnav",
+      "color": "rgba(44,160,44,0.25)"
+    },
+    {
+      "source_node_id": 0,
+      "target_node_id": 8,
+      "amount_key": "cotisations-agirc-arrco",
+      "color": "rgba(44,160,44,0.25)"
+    },
+    {
+      "source_node_id": 6,
+      "target_node_id": 8,
+      "amount_key": "pensions-cnav",
+      "color": "rgba(44,160,44,0.2)"
+    },
+    {
+      "source_node_id": 12,
+      "target_node_id": 6,
+      "amount_key": "cnaf-transfert-vieillesse",
+      "color": "rgba(227,119,194,0.25)"
+    },
+    {
+      "source_node_id": 13,
+      "target_node_id": 6,
+      "amount_key": "unedic-transfert-vieillesse",
+      "color": "rgba(23,190,207,0.25)"
+    },
+    {
+      "source_node_id": 17,
+      "target_node_id": 6,
+      "amount_key": "cnam-transfert-vieillesse",
+      "color": "rgba(0,131,143,0.15)"
+    },
+    {
+      "source_node_id": 9,
+      "target_node_id": 10,
+      "amount_key": "pensions-publiques",
+      "color": "rgba(230,85,13,0.2)"
+    },
+    {
+      "source_node_id": 8,
+      "target_node_id": 10,
+      "amount_key": "pensions-privé",
+      "color": "rgba(44,160,44,0.15)"
+    },
+    {
+      "source_node_id": 14,
+      "target_node_id": 15,
+      "amount_key": "cotisations-msa-pl-autres",
+      "color": "rgba(188,189,34,0.3)"
+    },
+    {
+      "source_node_id": 5,
+      "target_node_id": 15,
+      "amount_key": "subvention-etat-msa-autres",
+      "color": "rgba(255,127,14,0.2)"
+    },
+    {
+      "source_node_id": 15,
+      "target_node_id": 10,
+      "amount_key": "pensions-autres-regimes",
+      "color": "rgba(116,196,118,0.3)"
+    },
+    {
+      "source_node_id": 16,
+      "target_node_id": 2,
+      "amount_key": "fiscalite-locale-collectivites",
+      "color": "rgba(140,109,49,0.2)"
+    },
+    {
+      "source_node_id": 17,
+      "target_node_id": 18,
+      "amount_key": "ondam-hopitaux-publics",
+      "color": "rgba(0,131,143,0.2)"
+    }
+  ],
+  "layout": {
+    "title": "Flux de financement des retraites : qui paie réellement ?",
+    "width": 1600,
+    "height": 1000,
+    "margin": {
+      "l": 5,
+      "r": 5,
+      "t": 20,
+      "b": 90
+    },
+    "annotations": [
+      {
+        "text": "Sources : COR, Rapport annuel juin 2025 · Cour des comptes, NEB Pensions 2024 · CCSS mai 2026 · Sénat PLF 2025 · DGFiP exécution 2025 · URSSAF",
+        "xref": "paper",
+        "yref": "paper",
+        "x": 0.5,
+        "y": -0.04,
+        "showarrow": false,
+        "font": {
+          "size": 9,
+          "color": "#888888"
+        },
+        "xanchor": "center"
+      },
+      {
+        "text": "<b style='color:#d62728'>▬</b> Dette / surcotisation · <b style='color:#ff7f0e'>▬</b> Budget de l'État · <b style='color:#2ca02c'>▬</b> Cotisations directes · <b style='color:#1f77b4'>▬</b> CSG/impôts · <b style='color:#00838f'>▬</b> Sécu maladie (ONDAM)",
+        "xref": "paper",
+        "yref": "paper",
+        "x": 0.5,
+        "y": -0.01,
+        "showarrow": false,
+        "font": {
+          "size": 10
+        },
+        "xanchor": "center"
+      },
+      {
+        "text": "L'État finance ~110 Md€ du système de retraites : 95,4 Md€ directement + 14,4 Md€ via collectivités territoriales (sur 60 Md€ de dotations DGF). Budget déficitaire de 124 Md€ sur 443 Md€ (28 %) → ~31 Md€ de ce financement proviennent de la dette.",
+        "xref": "paper",
+        "yref": "paper",
+        "x": 0.5,
+        "y": -0.07,
+        "showarrow": false,
+        "font": {
+          "size": 9,
+          "color": "#555555"
+        },
+        "xanchor": "center"
+      }
+    ],
+    "legend_colors": [
+      {
+        "color": "#d62728",
+        "label": "Dette / surcotisation"
+      },
+      {
+        "color": "#ff7f0e",
+        "label": "Budget de l'État"
+      },
+      {
+        "color": "#2ca02c",
+        "label": "Cotisations directes"
+      },
+      {
+        "color": "#1f77b4",
+        "label": "CSG/impôts"
+      },
+      {
+        "color": "#00838f",
+        "label": "Sécu maladie (ONDAM)"
+      }
+    ]
+  }
+}
