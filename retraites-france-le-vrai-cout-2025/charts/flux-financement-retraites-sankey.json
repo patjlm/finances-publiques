@@ -6,14 +6,14 @@
       "label_override": "Cotisations privé 255 Md€ (CNAV 155 + AGIRC-ARRCO 100)",
       "color": "#2ca02c",
       "x": 0.01,
-      "y": 0.903
+      "y": 0.904
     },
     {
       "node_id": 1,
       "amount_key": "csg-impots-affectes",
       "color": "#1f77b4",
       "x": 0.01,
-      "y": 0.701
+      "y": 0.702
     },
     {
       "node_id": 2,
@@ -58,7 +58,7 @@
       "label_override": "CAS Pensions 65 Md€ (dont surcot. 45)",
       "color": "#e6550d",
       "x": 0.55,
-      "y": 0.101
+      "y": 0.212
     },
     {
       "node_id": 8,
@@ -72,7 +72,7 @@
       "amount_key": "pensions-publiques",
       "color": "#e6550d",
       "x": 0.8,
-      "y": 0.283
+      "y": 0.22
     },
     {
       "node_id": 10,
@@ -86,7 +86,7 @@
       "amount_key": "cotisations-regimes-speciaux-entreprises",
       "color": "#8c564b",
       "x": 0.55,
-      "y": 0.053
+      "y": 0.266
     },
     {
       "node_id": 12,
@@ -114,7 +114,7 @@
       "amount_key": "pensions-autres-regimes",
       "color": "#74c476",
       "x": 0.8,
-      "y": 0.018
+      "y": 0.039
     },
     {
       "node_id": 16,
