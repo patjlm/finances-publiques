@@ -20,7 +20,7 @@
       "amount_key": null,
       "label_override": "Collectivités territoriales",
       "color": "#9467bd",
-      "x": 0.4,
+      "x": 0.55,
       "y": 0.469
     },
     {
@@ -136,7 +136,7 @@
       "amount_key": null,
       "label_override": "Hôpitaux publics",
       "color": "#2b8cbe",
-      "x": 0.4,
+      "x": 0.55,
       "y": 0.6
     }
   ],
