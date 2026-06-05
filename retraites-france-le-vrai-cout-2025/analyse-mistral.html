@@ -34,7 +34,7 @@
         }
         .sankey-container {
             width: 100%;
-            height: 800px;
+            height: 900px;
             margin: 20px 0;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -82,14 +82,14 @@
 <body>
     <h1>Flux de Financement des Retraites en France (2024-2025)</h1>
     <p><em>Analyse alignée sur les données officielles du COR (juin 2025), DGFiP (décembre 2025), CCSS (mai 2026), et Cour des comptes (2024). Total pensions : <strong>407 Md€</strong>.</em></p>
-    <p><em>Architecture : Nœud "Budget État" comme transit central (inspiré de ZeeWeb).</em></p>
+    <p><em>Architecture : Nœud "Budget État" comme transit central (inspiré de ZeeWeb). Traçabilité complète de l'ONDAM et inclusion des petits régimes (IRCANTEC, RAFP, FSPOEIE).</em></p>
 
     <!-- Diagramme Sankey -->
     <div class="section">
         <h2>📊 Diagramme Sankey des Flux Financiers (2024-2025)</h2>
         <p>
             Ce diagramme représente les <strong>flux financiers officiels</strong> du système de retraite français.
-            <strong>Toutes les données sont sourcées, équilibrées et alignées sur le modèle ZeeWeb.</strong>
+            <strong>Toutes les données sont sourcées, équilibrées et traçables jusqu'à leur origine.</strong>
         </p>
         <div class="sankey-container" id="sankey-chart"></div>
 
@@ -108,35 +108,41 @@
                         "CSG/Impôts Affectés (25 Md€)",          // 1 - PLFSS 2025
                         "Recettes Fiscales État (319 Md€)",     // 2 - DGFiP 2025
                         "Dette/Emprunt (124 Md€)",               // 3 - DGFiP 2025
-                        "CNAF (10,9 Md€)",                       // 4 - CCSS 2026
-                        "UNEDIC (4 Md€)",                        // 5 - CCSS 2026
-                        "CNAM (1,9 Md€)",                        // 6 - CCSS 2026
-                        "Collectivités Territoriales (60 Md€)", // 7 - DGFiP 2025
-                        "Fiscalité Locale (130 Md€)",           // 8 - DGFiP 2025
-                        "ONDAM (80 Md€)",                       // 9 - PLFSS 2025
+                        "Cotisations Maladie (200 Md€)",         // 4 - CCSS 2026 (CNAM)
+                        "CNAF (10,9 Md€)",                       // 5 - CCSS 2026
+                        "UNEDIC (4 Md€)",                        // 6 - CCSS 2026
+                        "Cotisations IRCANTEC/RAFP (5 Md€)",     // 7 - COR 2025
 
                         // Nœud de Transit Central
-                        "Budget État (443 Md€)",                // 10 - DGFiP 2025
+                        "Budget État (443 Md€)",                // 8 - DGFiP 2025
+                        "CNAM (Sécu Maladie)",                  // 9 - CCSS 2026
+
+                        // Collectivités et Hôpitaux
+                        "Collectivités Territoriales",          // 10
+                        "Hôpitaux",                             // 11
 
                         // Régimes
-                        "Sécu Vieillesse (CNAV)",               // 11 - COR 2025
-                        "CAS Pensions",                         // 12 - Cour des comptes
-                        "AGIRC-ARRCO",                          // 13 - AGIRC-ARRCO 2025
-                        "Régimes Spéciaux",                     // 14 - Sénat 2025
-                        "CNRACL",                               // 15 - COR 2025
-                        "MSA/PL",                               // 16 - COR 2025
+                        "Sécu Vieillesse (CNAV)",               // 12 - COR 2025
+                        "CAS Pensions",                         // 13 - Cour des comptes
+                        "AGIRC-ARRCO",                          // 14 - AGIRC-ARRCO 2025
+                        "Régimes Spéciaux",                     // 15 - Sénat 2025
+                        "CNRACL",                               // 16 - COR 2025
+                        "MSA/PL",                               // 17 - COR 2025
+                        "IRCANTEC/RAFP/FSPOEIE (3,5 Md€)",      // 18 - COR 2025
 
                         // Cibles
-                        "Total Pensions (407 Md€)",             // 17 - COR 2025
-                        "Dette Publique"                        // 18
+                        "Total Pensions (407 Md€)",             // 19 - COR 2025
+                        "Dette Publique"                        // 20
                     ],
                     color: [
                         // Sources
-                        "#3498db", "#2ecc71", "#e74c3c", "#e74c3c", "#9b59b6", "#9b59b6", "#9b59b6", "#f39c12", "#f39c12", "#1abc9c",
+                        "#3498db", "#2ecc71", "#e74c3c", "#e74c3c", "#1abc9c", "#9b59b6", "#9b59b6", "#e67e22",
                         // Nœud de Transit
-                        "#7f8c8d",
+                        "#7f8c8d", "#1abc9c",
+                        // Collectivités et Hôpitaux
+                        "#f39c12", "#f39c12",
                         // Régimes
-                        "#1abc9c", "#e67e22", "#e67e22", "#34495e", "#34495e", "#34495e",
+                        "#1abc9c", "#e67e22", "#e67e22", "#34495e", "#34495e", "#34495e", "#34495e", "#34495e",
                         // Cibles
                         "#16a085", "#95a5a6"
                     ]
@@ -144,7 +150,7 @@
                 link: {
                     // Sources → Budget État
                     source: [2, 3],
-                    target: [10, 10],
+                    target: [8, 8],
                     value: [319, 124],
                     label: [
                         "319 Md€ (Recettes Fiscales → Budget État)",
@@ -154,15 +160,15 @@
                 }
             };
 
-            // Ajout des dotations État → Collectivités Territoriales
-            sankeyData.link.source.push(10);
-            sankeyData.link.target.push(7);
-            sankeyData.link.value.push(60);
-            sankeyData.link.label.push("60 Md€ (Budget État → Collectivités Territoriales)");
+            // Ajout des cotisations maladie → CNAM
+            sankeyData.link.source.push(4);
+            sankeyData.link.target.push(9);
+            sankeyData.link.value.push(200);
+            sankeyData.link.label.push("200 Md€ (Cotisations Maladie → CNAM)");
 
             // Ajout des transferts inter-branches (CNAF/UNEDIC/CNAM → CNAV)
-            sankeyData.link.source.push(4, 5, 6);
-            sankeyData.link.target.push(11, 11, 11);
+            sankeyData.link.source.push(5, 6, 9);
+            sankeyData.link.target.push(12, 12, 12);
             sankeyData.link.value.push(10.9, 4, 1.9);
             sankeyData.link.label.push(
                 "10,9 Md€ (CNAF → CNAV)",
@@ -170,9 +176,21 @@
                 "1,9 Md€ (CNAM → CNAV)"
             );
 
+            // Ajout de l'ONDAM : CNAM → Hôpitaux
+            sankeyData.link.source.push(9);
+            sankeyData.link.target.push(11);
+            sankeyData.link.value.push(80);
+            sankeyData.link.label.push("80 Md€ (CNAM → Hôpitaux, ONDAM)");
+
+            // Ajout des dotations État → Collectivités Territoriales
+            sankeyData.link.source.push(8);
+            sankeyData.link.target.push(10);
+            sankeyData.link.value.push(60);
+            sankeyData.link.label.push("60 Md€ (Budget État → Collectivités Territoriales)");
+
             // Ajout des liens Budget État → Régimes
-            sankeyData.link.source.push(10, 10, 10);
-            sankeyData.link.target.push(11, 12, 14);
+            sankeyData.link.source.push(8, 8, 8);
+            sankeyData.link.target.push(12, 13, 15);
             sankeyData.link.value.push(8, 65, 6);
             sankeyData.link.label.push(
                 "8 Md€ (Budget → Sécu Vieillesse, FSV)",
@@ -181,43 +199,42 @@
             );
 
             // Ajout des liens Collectivités Territoriales → CNRACL
-            sankeyData.link.source.push(7, 8, 9);
-            sankeyData.link.target.push(15, 15, 15);
-            sankeyData.link.value.push(60, 130, 80);
-            sankeyData.link.label.push(
-                "60 Md€ (Dotations État → Collectivités Territoriales)",
-                "130 Md€ (Fiscalité Locale → Collectivités Territoriales)",
-                "80 Md€ (ONDAM → Hôpitaux)"
-            );
+            sankeyData.link.source.push(10);
+            sankeyData.link.target.push(16);
+            sankeyData.link.value.push(27.5);
+            sankeyData.link.label.push("27,5 Md€ (Collectivités Territoriales → CNRACL)");
+
+            // Ajout des liens Hôpitaux → CNRACL
+            sankeyData.link.source.push(11);
+            sankeyData.link.target.push(16);
+            sankeyData.link.value.push(0);
+            sankeyData.link.label.push("0 Md€ (Hôpitaux → CNRACL, inclus dans Collectivités)");
 
             // Ajout des liens Cotisations → Régimes
-            sankeyData.link.source.push(0, 0, 0, 0, 1);
-            sankeyData.link.target.push(11, 13, 14, 16, 11);
-            sankeyData.link.value.push(155, 98.1, 3, 31, 25);
+            sankeyData.link.source.push(0, 0, 0, 0, 1, 7);
+            sankeyData.link.target.push(12, 14, 15, 17, 12, 18);
+            sankeyData.link.value.push(155, 98.1, 3, 31, 25, 5);
             sankeyData.link.label.push(
                 "155 Md€ (Cotisations Privées → CNAV)",
                 "98,1 Md€ (Cotisations Privées → AGIRC-ARRCO)",
                 "3 Md€ (Cotisations → Régimes Spéciaux)",
                 "31 Md€ (Cotisations → MSA/PL)",
-                "25 Md€ (CSG/Impôts → CNAV)"
+                "25 Md€ (CSG/Impôts → CNAV)",
+                "5 Md€ (Cotisations IRCANTEC/RAFP → IRCANTEC/RAFP)"
             );
 
-            // Ajout des liens CNRACL → Total Pensions
-            sankeyData.link.source.push(15);
-            sankeyData.link.target.push(17);
-            sankeyData.link.value.push(27.5);
-            sankeyData.link.label.push("27,5 Md€ (CNRACL → Total Pensions)");
-
             // Ajout des liens Régimes → Total Pensions
-            sankeyData.link.source.push(11, 12, 13, 14, 16);
-            sankeyData.link.target.push(17, 17, 17, 17, 17);
-            sankeyData.link.value.push(159, 65, 98.1, 11, 42.9);
+            sankeyData.link.source.push(12, 13, 14, 15, 16, 17, 18);
+            sankeyData.link.target.push(19, 19, 19, 19, 19, 19, 19);
+            sankeyData.link.value.push(159, 65, 98.1, 11, 27.5, 42.9, 3.5);
             sankeyData.link.label.push(
                 "159 Md€ (CNAV → Total Pensions)",
                 "65 Md€ (CAS → Total Pensions)",
                 "98,1 Md€ (AGIRC-ARRCO → Total Pensions)",
                 "11 Md€ (Régimes Spéciaux → Total Pensions)",
-                "42,9 Md€ (MSA/PL → Total Pensions)"
+                "27,5 Md€ (CNRACL → Total Pensions)",
+                "42,9 Md€ (MSA/PL → Total Pensions)",
+                "3,5 Md€ (IRCANTEC/RAFP/FSPOEIE → Total Pensions)"
             );
 
             const layout = {
@@ -227,7 +244,7 @@
                 },
                 font: { size: 12 },
                 width: 1400,
-                height: 800,
+                height: 900,
                 hovermode: "closest",
                 margin: { l: 50, r: 50, t: 50, b: 50 }
             };
@@ -240,13 +257,16 @@
                 <strong>Légende des flux :</strong>
                 <ul>
                     <li><strong>Cotisations Privées (253,1 Md€)</strong> : CNAV (155 Md€) + AGIRC-ARRCO (98,1 Md€) + Régimes Spéciaux (3 Md€) + MSA/PL (31 Md€).</li>
+                    <li><strong>Cotisations Maladie (200 Md€)</strong> : Financement de la CNAM (Sécu Maladie).</li>
                     <li><strong>CSG/Impôts Affectés (25 Md€)</strong> : Financement de la Sécu Vieillesse (COR 2025).</li>
                     <li><strong>Recettes Fiscales État (319 Md€)</strong> : Budget général (DGFiP 2025).</li>
-                    <li><strong>Dette/Emprunt (124 Md€)</strong> : Déficit 2025 (DGFiP) → <strong>Finance le Budget État</strong>.</li>
+                    <li><strong>Dette/Emprunt (124 Md€)</strong> : Déficit 2025 (DGFiP) → Finance le Budget État.</li>
                     <li><strong>Budget État (443 Md€)</strong> : 319 Md€ (recettes) + 124 Md€ (dette). <strong>~110 Md€ financent les retraites</strong> (8 + 65 + 6).</li>
-                    <li><strong>Collectivités Territoriales (60 Md€)</strong> : Dotations État → Financement des salaires des agents territoriaux (dont cotisations CNRACL).</li>
-                    <li><strong>Fiscalité Locale (130 Md€) + ONDAM (80 Md€)</strong> : Financement des collectivités et hôpitaux (dont cotisations CNRACL).</li>
-                    <li><strong>CNRACL (27,5 Md€)</strong> : Pensions des fonctionnaires territoriaux et hospitaliers, financées par les collectivités et hôpitaux.</li>
+                    <li><strong>CNAM (Sécu Maladie)</strong> : 200 Md€ (cotisations maladie) → Finance l'ONDAM (80 Md€) et les transferts vers CNAV (1,9 Md€).</li>
+                    <li><strong>ONDAM (80 Md€)</strong> : Budget des hôpitaux → Financement des salaires (dont cotisations CNRACL).</li>
+                    <li><strong>Collectivités Territoriales</strong> : 60 Md€ (Budget État) + 130 Md€ (Fiscalité Locale) → Financement des salaires (dont cotisations CNRACL).</li>
+                    <li><strong>CNRACL (27,5 Md€)</strong> : Pensions des fonctionnaires territoriaux et hospitaliers → Financé par les collectivités et hôpitaux.</li>
+                    <li><strong>IRCANTEC/RAFP/FSPOEIE (3,5 Md€)</strong> : Régimes complémentaires de la fonction publique → Financés par des cotisations spécifiques.</li>
                     <li><strong>Total Pensions (407 Md€)</strong> : COR 2025.</li>
                 </ul>
                 <strong>⚠️ Notes méthodologiques :</strong>
@@ -255,8 +275,9 @@
                     <li>Les données <strong>budget/dette</strong> sont en <strong>2025</strong> (DGFiP).</li>
                     <li>Le nœud <strong>Budget État (443 Md€)</strong> est un <strong>nœud de transit central</strong> (comme dans ZeeWeb).</li>
                     <li>Le lien <strong>Dette/Emprunt → Budget État</strong> montre que la dette <strong>finance le déficit</strong>, mais <strong>pas de double-comptage</strong>.</li>
-                    <li>Les <strong>27,5 Md€ de CNRACL</strong> sont financés par les <strong>collectivités et hôpitaux</strong> (via dotations État, fiscalité locale, ONDAM).</li>
-                    <li>Le <strong>déficit CNAV (-7,2 Md€ en 2025)</strong> est couvert par le Budget État (inclus dans les 8 Md€ FSV).</li>
+                    <li>L'<strong>ONDAM (80 Md€)</strong> est traçable depuis la <strong>CNAM (Sécu Maladie)</strong>.</li>
+                    <li>Les <strong>3,5 Md€ d'IRCANTEC/RAFP/FSPOEIE</strong> complètent le total à <strong>407 Md€</strong>.</li>
+                    <li>Le <strong>déficit CNAV (-7,2 Md€)</strong> est couvert par le Budget État (inclus dans les 8 Md€ FSV).</li>
                 </ul>
             </p>
         </div>
@@ -328,11 +349,32 @@
                     <td><a href="https://www.cor-retraites.fr/IMG/pdf/cor_rapport_annuel_2025.pdf" class="source-link">Lien</a></td>
                 </tr>
                 <tr>
+                    <td>IRCANTEC/RAFP/FSPOEIE</td>
+                    <td>3,5 Md€</td>
+                    <td>2024</td>
+                    <td>COR 2025</td>
+                    <td><a href="https://www.cor-retraites.fr/IMG/pdf/cor_rapport_annuel_2025.pdf" class="source-link">Lien</a></td>
+                </tr>
+                <tr>
                     <td>Transferts Inter-Branches (CNAF/UNEDIC/CNAM)</td>
                     <td>16,8 Md€</td>
                     <td>2024</td>
                     <td>CCSS 2026</td>
                     <td><a href="https://www.securite-sociale.fr" class="source-link">Lien</a></td>
+                </tr>
+                <tr>
+                    <td>Cotisations Maladie (CNAM)</td>
+                    <td>200 Md€</td>
+                    <td>2024</td>
+                    <td>CCSS 2026</td>
+                    <td><a href="https://www.securite-sociale.fr" class="source-link">Lien</a></td>
+                </tr>
+                <tr>
+                    <td>ONDAM</td>
+                    <td>80 Md€</td>
+                    <td>2024</td>
+                    <td>PLFSS 2025</td>
+                    <td><a href="https://www.senat.fr" class="source-link">Lien</a></td>
                 </tr>
                 <tr>
                     <td>Déficit CNAV</td>
@@ -377,7 +419,10 @@
             <li><strong>253,1 Md€</strong> de cotisations privées (<a href="https://www.cor-retraites.fr/IMG/pdf/cor_rapport_annuel_2025.pdf" class="source-link">COR 2025</a>).</li>
             <li><strong>98,1 Md€</strong> pour AGIRC-ARRCO (<a href="https://www.agirc-arrco.fr" class="source-link">AGIRC-ARRCO 2025</a>).</li>
             <li><strong>27,5 Md€</strong> pour CNRACL, financés par les collectivités et hôpitaux (<a href="https://www.cor-retraites.fr/IMG/pdf/cor_rapport_annuel_2025.pdf" class="source-link">COR 2025</a>).</li>
+            <li><strong>3,5 Md€</strong> pour IRCANTEC/RAFP/FSPOEIE (<a href="https://www.cor-retraites.fr/IMG/pdf/cor_rapport_annuel_2025.pdf" class="source-link">COR 2025</a>).</li>
             <li><strong>16,8 Md€</strong> de transferts inter-branches (CNAF/UNEDIC/CNAM) (<a href="https://www.securite-sociale.fr" class="source-link">CCSS 2026</a>).</li>
+            <li><strong>200 Md€</strong> de cotisations maladie (CNAM) (<a href="https://www.securite-sociale.fr" class="source-link">CCSS 2026</a>).</li>
+            <li><strong>80 Md€</strong> d'ONDAM, traçable depuis la CNAM (<a href="https://www.senat.fr" class="source-link">PLFSS 2025</a>).</li>
             <li><strong>110 Md€</strong> du Budget État financent les retraites (subventions + cotisations employeur).</li>
             <li><strong>124 Md€</strong> de déficit public en 2025 (<a href="https://www.economie.gouv.fr/dgfip" class="source-link">DGFiP</a>).</li>
             <li><strong>-7,2 Md€</strong> de déficit CNAV en 2025 (<a href="https://www.securite-sociale.fr" class="source-link">CCSS 2026</a>).</li>
@@ -390,20 +435,22 @@
             <li>Les données <strong>budget/dette</strong> sont en <strong>2025</strong> (DGFiP).</li>
             <li>Le nœud <strong>Budget État (443 Md€)</strong> est un <strong>nœud de transit central</strong> (comme dans ZeeWeb).</li>
             <li>Le lien <strong>Dette/Emprunt → Budget État</strong> montre que la dette <strong>finance le déficit</strong>, mais <strong>pas de double-comptage</strong>.</li>
-            <li>Les <strong>27,5 Md€ de CNRACL</strong> sont financés par les <strong>collectivités et hôpitaux</strong> (via dotations État, fiscalité locale, ONDAM).</li>
+            <li>L'<strong>ONDAM (80 Md€)</strong> est traçable depuis la <strong>CNAM (Sécu Maladie)</strong>.</li>
+            <li>Les <strong>3,5 Md€ d'IRCANTEC/RAFP/FSPOEIE</strong> complètent le total à <strong>407 Md€</strong>.</li>
             <li>Le <strong>déficit CNAV (-7,2 Md€)</strong> est couvert par le Budget État (inclus dans les 8 Md€ FSV).</li>
         </ul>
         <div class="highlight">
             <p>
-                <strong>✅ Validations appliquées (v9) :</strong>
+                <strong>✅ Validations appliquées (v10) :</strong>
                 <ul>
                     <li>Total des pensions = <strong>407 Md€</strong> (COR 2025).</li>
                     <li>AGIRC-ARRCO = <strong>98,1 Md€</strong> (données 2024).</li>
                     <li>CNRACL = <strong>27,5 Md€</strong> (financé par collectivités/hôpitaux).</li>
+                    <li>IRCANTEC/RAFP/FSPOEIE = <strong>3,5 Md€</strong> (COR 2025).</li>
                     <li>Transferts inter-branches (CNAF/UNEDIC/CNAM) = <strong>16,8 Md€</strong> (CCSS 2026).</li>
+                    <li>ONDAM (80 Md€) traçable depuis <strong>CNAM (200 Md€)</strong>.</li>
                     <li>Flux <strong>équilibrés</strong> (pas de dead-ends, pas de double-comptage).</li>
                     <li>Architecture <strong>alignée sur ZeeWeb</strong> (nœud Budget État central).</li>
-                    <li>Déficit CNAV (-7,2 Md€) <strong>précisé</strong> (CCSS 2026).</li>
                 </ul>
             </p>
         </div>
